@@ -1,0 +1,17 @@
+.wrapper {
+    padding: 4px 12px;
+    background-color: #323436;
+    max-width: 334px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px 0 #323436;
+    display: flex;
+    align-items: center;
+    text-align: start;
+}
+.title {
+    margin: 5px 0px;
+    line-height: 16px;
+    font-size: 0.875rem;
+    color: var(--primary-text);
+    font-weight: 500;
+}
