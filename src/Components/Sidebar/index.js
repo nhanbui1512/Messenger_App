@@ -8,7 +8,7 @@ function Sidebar() {
     return (
         <div className={cx('wrapper')}>
             <Navigation />
-            <div>Users</div>
+            <div>Chat</div>
         </div>
     );
 }

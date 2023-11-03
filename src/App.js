@@ -17,8 +17,16 @@ function App() {
                                     <DashboardPage />
                                 </DefaultLayout>
                             }
+                        />
+                        <Route
+                            key={0}
+                            path="/active"
+                            element={
+                                <DefaultLayout>
+                                    <DashboardPage />
+                                </DefaultLayout>
+                            }
                         ></Route>
-                        <Route key={0} path="/message" element={<h1>message</h1>}></Route>
                     </Routes>
                 </div>
             </BrowserRouter>
