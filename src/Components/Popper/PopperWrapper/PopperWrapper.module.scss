@@ -1,0 +1,17 @@
+.wrapper {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16);
+    width: 344px;
+    padding: 4px 0px;
+    max-height: 844px;
+    position: relative;
+}
+.arrow {
+    fill: #fff;
+    height: 12px;
+    width: 25px;
+    position: absolute;
+    left: 10px;
+    bottom: -10px;
+}

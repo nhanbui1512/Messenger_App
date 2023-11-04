@@ -12,6 +12,7 @@ import {
 import GlobalStyles from '../GlobalStyles/GlobalStyles.module.scss';
 import DropBar from '../DropBar';
 import { useState } from 'react';
+import MenuOption from '../MenuOption';
 const cx = classNames.bind(styles);
 
 function Navigation() {
@@ -92,6 +93,8 @@ function Navigation() {
         },
     ];
 
+    const [opsPopper, setOpsPopper] = useState(false);
+
     return (
         <div className={cx('wrapper', { isExpand: isExpand })}>
             <div className={cx('nav-container')}>
@@ -129,23 +132,34 @@ function Navigation() {
 
                 <div>
                     <div className={cx('footer', GlobalStyles.pd_12_0)}>
-                        <div className={cx('ops-wrap')}>
-                            <button className={cx('ops-btn')}>
-                                <img
-                                    src="https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=dst-png_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=SOxyIlWQiIYAX8ntx9h&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfAO0Ka_NNxYc3zDQlea0Mguzu5ytXVOuqnoI7sCKOMNFg&oe=656AD4F8"
-                                    alt=""
-                                />
-                            </button>
-                            {isExpand && <span className={cx('my-name')}>Nhân</span>}
+                        <div className={cx('ops-container')}>
+                            <div
+                                className={cx('ops-wrap')}
+                                onClick={() => {
+                                    setOpsPopper(!opsPopper);
+                                }}
+                            >
+                                <button className={cx('ops-btn')}>
+                                    <img
+                                        src="https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=dst-png_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=SOxyIlWQiIYAX8ntx9h&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfAO0Ka_NNxYc3zDQlea0Mguzu5ytXVOuqnoI7sCKOMNFg&oe=656AD4F8"
+                                        alt=""
+                                    />
+                                </button>
+                                {isExpand && <span className={cx('my-name')}>Nhân</span>}
+                            </div>
+
+                            {opsPopper && <MenuOption />}
                         </div>
-                        <button
-                            onClick={() => {
-                                setIsExpand(!isExpand);
-                            }}
-                            className={cx('expand-btn')}
-                        >
-                            <ExpandNavIcon />
-                        </button>
+                        <div>
+                            <button
+                                onClick={() => {
+                                    setIsExpand(!isExpand);
+                                }}
+                                className={cx('expand-btn')}
+                            >
+                                <ExpandNavIcon />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
