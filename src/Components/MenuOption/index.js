@@ -13,7 +13,8 @@ import {
     SettingIcon,
     Warning,
 } from '../Icons';
-
+import Header from './Header';
+import { useState } from 'react';
 const cx = classNames.bind(styles);
 
 export default function MenuOption() {
@@ -31,6 +32,24 @@ export default function MenuOption() {
         {
             title: 'Quyền riêng tư & an toàn',
             icon: <HomeLock />,
+            children: {
+                title: 'Quyền riêng tư & an toàn',
+                data: [
+                    {
+                        title: 'Đoạn chat được mã hóa đầu cuối',
+                        icon: <Question />,
+                        children: {
+                            title: 'Đoạn chat được mã hóa đầu cuối',
+                            data: [
+                                {
+                                    title: 'Cảnh báo bảo mật',
+                                    icon: <Question />,
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
             separate: true,
         },
         {
@@ -71,15 +90,29 @@ export default function MenuOption() {
             icon: <LogoutIcon />,
         },
     ];
+
+    const [history, setHistory] = useState([{ data: items }]);
+
     return (
         <PopperWrapper className={cx('ops_popper')}>
-            {items.map((item, index) => {
+            {history.length > 1 && (
+                <Header
+                    onBack={() => {
+                        if (history.length > 1) setHistory(history.splice(0, history.length - 1));
+                    }}
+                    title={history[history.length - 1].title}
+                />
+            )}
+            {history[history.length - 1].data.map((item, index) => {
                 return (
                     <PopperItem
+                        onClick={() => {
+                            if (item.children) {
+                                setHistory((prev) => [...prev, item.children]);
+                            }
+                        }}
                         key={index}
-                        title={item.title}
-                        icon={item.icon}
-                        separate={item.separate}
+                        data={item}
                     />
                 );
             })}

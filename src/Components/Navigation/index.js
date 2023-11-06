@@ -13,6 +13,7 @@ import GlobalStyles from '../GlobalStyles/GlobalStyles.module.scss';
 import DropBar from '../DropBar';
 import { useState } from 'react';
 import MenuOption from '../MenuOption';
+import CircleButton from '../CircleButton';
 const cx = classNames.bind(styles);
 
 function Navigation() {
@@ -188,15 +189,13 @@ function Navigation() {
 
                             {opsPopper && <MenuOption />}
                         </div>
-                        <div>
-                            <button
+                        <div className={cx('expand-btn')}>
+                            <CircleButton
                                 onClick={() => {
                                     setIsExpand(!isExpand);
                                 }}
-                                className={cx('expand-btn')}
-                            >
-                                <ExpandNavIcon />
-                            </button>
+                                icon={<ExpandNavIcon />}
+                            />
                         </div>
                     </div>
                 </div>

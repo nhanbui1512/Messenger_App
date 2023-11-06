@@ -1,4 +1,5 @@
 .wrapper {
+    position: relative;
     margin: 0 4px;
     padding: 10px 8px;
     display: flex;
@@ -27,6 +28,17 @@
         font-size: 14px;
         font-weight: 500;
     }
+}
+
+.right-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: flex;
+}
+.right-icon {
+    width: 20px;
+    height: 20px;
 }
 .separator {
     height: 1px;
