@@ -10,9 +10,19 @@
 }
 .nav-top {
     padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-x: hidden;
 }
 .nav-btn-group {
     padding: 0px 8px;
+    flex-shrink: 1;
+}
+.groups {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .ops-wrap {
