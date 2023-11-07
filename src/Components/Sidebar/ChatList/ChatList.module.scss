@@ -2,6 +2,7 @@
     width: 360px;
     display: flex;
     flex-direction: column;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 .header {
     width: 100%;
@@ -20,4 +21,11 @@
 }
 .title {
     font-size: 1.5rem;
+}
+.chat-list {
+    display: flex;
+    flex-direction: column;
+}
+.search-box {
+    padding-bottom: 12px;
 }
