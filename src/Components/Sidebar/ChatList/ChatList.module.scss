@@ -25,7 +25,34 @@
 .chat-list {
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
 }
 .search-box {
     padding-bottom: 12px;
+}
+
+.footer {
+    display: flex;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    min-height: 54px;
+    padding: 8px;
+}
+.download-icon {
+    font-size: 16px;
+    margin-right: 6px;
+}
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #050505;
+    font-weight: 500;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
 }

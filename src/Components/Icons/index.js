@@ -259,3 +259,18 @@ export const SearchIcon = ({ className = {}, height = 20, width = 20 }) => {
         </svg>
     );
 };
+
+export const ElipseIcon = ({ width = 16, height = 16, className = {} }) => {
+    return (
+        <svg
+            className={className}
+            viewBox="6 6 24 24"
+            fill="currentColor"
+            width={width}
+            height={height}
+            overflow="visible"
+        >
+            <path d="M12.5 18A2.25 2.25 0 1 1 8 18a2.25 2.25 0 0 1 4.5 0zM20.25 18a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0zM25.75 20.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5z"></path>
+        </svg>
+    );
+};

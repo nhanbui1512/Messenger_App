@@ -84,49 +84,13 @@ function Navigation() {
         },
         {
             to: '/group',
-            title: 'Tiếng Anh nâng cao 9 - 2023',
-            src: 'https://scontent.fdad3-1.fna.fbcdn.net/v/t39.30808-6/340400129_1867644683610640_3869551829741544212_n.jpg?stp=c85.0.100.100a_dst-jpg_p100x100&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=L6flMOnmtDMAX8-0hkc&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-1.fna&oh=00_AfCVAqh7Tv_c5S70_mdHMux_eGYHZXoUCa8VI6JIqsO2VQ&oe=654795AF',
-        },
-        {
-            to: '/group',
             title: 'Tuyển dụng thực tập sinh IT',
             src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/116687302_959241714549285_318408173653384421_n.jpg?stp=dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=0be577&_nc_ohc=Lan1rURmaIYAX9WUT7F&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfALk7mrBJMkQSQSAUsnbtw2TQbl29T7piyHhNnQTqxVnw&oe=656ACF03',
         },
         {
             to: '/group',
-            title: 'Tiếng Anh nâng cao 9 - 2023',
-            src: 'https://scontent.fdad3-1.fna.fbcdn.net/v/t39.30808-6/340400129_1867644683610640_3869551829741544212_n.jpg?stp=c85.0.100.100a_dst-jpg_p100x100&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=L6flMOnmtDMAX8-0hkc&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-1.fna&oh=00_AfCVAqh7Tv_c5S70_mdHMux_eGYHZXoUCa8VI6JIqsO2VQ&oe=654795AF',
-        },
-        {
-            to: '/group',
             title: 'Tuyển dụng thực tập sinh IT',
             src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/116687302_959241714549285_318408173653384421_n.jpg?stp=dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=0be577&_nc_ohc=Lan1rURmaIYAX9WUT7F&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfALk7mrBJMkQSQSAUsnbtw2TQbl29T7piyHhNnQTqxVnw&oe=656ACF03',
-        },
-        {
-            to: '/group',
-            title: 'Tiếng Anh nâng cao 9 - 2023',
-            src: 'https://scontent.fdad3-1.fna.fbcdn.net/v/t39.30808-6/340400129_1867644683610640_3869551829741544212_n.jpg?stp=c85.0.100.100a_dst-jpg_p100x100&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=L6flMOnmtDMAX8-0hkc&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-1.fna&oh=00_AfCVAqh7Tv_c5S70_mdHMux_eGYHZXoUCa8VI6JIqsO2VQ&oe=654795AF',
-        },
-        {
-            to: '/group',
-            title: 'Tuyển dụng thực tập sinh IT',
-            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/116687302_959241714549285_318408173653384421_n.jpg?stp=dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=0be577&_nc_ohc=Lan1rURmaIYAX9WUT7F&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfALk7mrBJMkQSQSAUsnbtw2TQbl29T7piyHhNnQTqxVnw&oe=656ACF03',
-        },
-        {
-            to: '/group',
-            title: 'Tiếng Anh nâng cao 9 - 2023',
-            src: 'https://scontent.fdad3-1.fna.fbcdn.net/v/t39.30808-6/340400129_1867644683610640_3869551829741544212_n.jpg?stp=c85.0.100.100a_dst-jpg_p100x100&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=L6flMOnmtDMAX8-0hkc&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-1.fna&oh=00_AfCVAqh7Tv_c5S70_mdHMux_eGYHZXoUCa8VI6JIqsO2VQ&oe=654795AF',
-        },
-        {
-            to: '/group',
-            title: 'Tuyển dụng thực tập sinh IT',
-            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/116687302_959241714549285_318408173653384421_n.jpg?stp=dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=0be577&_nc_ohc=Lan1rURmaIYAX9WUT7F&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfALk7mrBJMkQSQSAUsnbtw2TQbl29T7piyHhNnQTqxVnw&oe=656ACF03',
-        },
-
-        {
-            to: '/group',
-            title: 'Tiếng Anh nâng cao 9 - 2023',
-            src: 'https://scontent.fdad3-1.fna.fbcdn.net/v/t39.30808-6/340400129_1867644683610640_3869551829741544212_n.jpg?stp=c85.0.100.100a_dst-jpg_p100x100&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=L6flMOnmtDMAX8-0hkc&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-1.fna&oh=00_AfCVAqh7Tv_c5S70_mdHMux_eGYHZXoUCa8VI6JIqsO2VQ&oe=654795AF',
         },
     ];
 
