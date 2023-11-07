@@ -57,6 +57,13 @@ a {
 input[type='range' i] {
     appearance: none;
 }
+.row {
+    display: flex;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+}
 .pd_12_0 {
     padding: 12px 0;
 }
@@ -64,7 +71,9 @@ input[type='range' i] {
 .pd_0_8 {
     padding: 0px 8px;
 }
-
+.pd_0_16 {
+    padding: 0 16px;
+}
 @font-face {
     font-family: SegoeUI;
     src: local('Segoe UI Light'),

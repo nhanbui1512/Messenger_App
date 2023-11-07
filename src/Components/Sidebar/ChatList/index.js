@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './ChatList.module.scss';
 import CircleButton from '../../CircleButton';
 import { EditIcon } from '../../Icons';
+import Search from '../../Search';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +17,9 @@ export default function ChatList({ children }) {
                     <CircleButton icon={<EditIcon />} />
                 </div>
             </div>
-            <div>Search</div>
+            <div>
+                <Search />
+            </div>
             <div>List users</div>
         </div>
     );
