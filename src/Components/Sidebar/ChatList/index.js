@@ -34,7 +34,12 @@ export default function ChatList({ children }) {
                 <ChatItem />
                 <ChatItem />
                 <ChatItem />
+                <ChatItem />
+                <ChatItem />
+                <ChatItem />
+                <ChatItem />
             </div>
+
             <div className={cx('footer')}>
                 <div className={cx('footer-content')}>
                     <FontAwesomeIcon className={cx('download-icon')} icon={faDownload} />
