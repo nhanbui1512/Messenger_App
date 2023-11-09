@@ -1,0 +1,29 @@
+.wrapper {
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0px;
+    margin: 0px 8px;
+}
+.group-btn {
+    display: flex;
+}
+.input-container {
+    width: 100%;
+    display: flex;
+    background-color: rgba(134, 142, 153, 0.1);
+    height: 100%;
+    border-radius: 20px;
+    margin: 0px 8px;
+    input {
+        background-color: transparent;
+        margin-bottom: 8px;
+        margin-top: 8px;
+        margin-left: 12px;
+        margin-right: 32px;
+        width: 100%;
+        color: var(--primary-black);
+        font-size: 0.9375rem;
+    }
+}

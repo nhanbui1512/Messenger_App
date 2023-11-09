@@ -2,6 +2,7 @@
     position: absolute;
     bottom: 130%;
     left: 40%;
+    z-index: 1;
 }
 
 .header {
@@ -32,7 +33,7 @@
     display: flex;
     align-items: center;
     span {
-        color: #050505;
+        color: var(--primary-black);
         font-size: 16px;
         font-weight: 500;
     }
