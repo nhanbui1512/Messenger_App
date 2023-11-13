@@ -54,33 +54,23 @@ function Navigation() {
     const groupBtns = [
         {
             to: '/group',
-            title: 'Tuyển dụng Front-end/Back-end (Nodejs, ReactJs, Python, Java, Html, Css)',
-            src: 'https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/329549658_2468318956672524_6427325944667607830_n.png?stp=c46.0.100.100a_dst-png_p100x100&_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=0wc9VkInm4UAX_5-yCV&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-5.fna&oh=00_AfAq3k2kovmHcxsmNPQ9Z8qEOjBnPqLkdJNNkxmS3t1mCw&oe=65483EA2',
+            title: 'Tuyển dụng thực tập sinh IT',
+            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/116687302_959241714549285_318408173653384421_n.jpg?stp=dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=0be577&_nc_ohc=Lan1rURmaIYAX9WUT7F&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfALk7mrBJMkQSQSAUsnbtw2TQbl29T7piyHhNnQTqxVnw&oe=656ACF03',
         },
         {
             to: '/group',
-            title: 'Hội những người từng đi tù',
-            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t39.30808-6/391653861_6764534890290420_2403395200867876972_n.jpg?stp=c17.0.100.100a_cp6_dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=4mkexEnqJrkAX943bS1&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfDSDyjtUXybAPekUPfCCKo9RCkI7ST3m1iZX3rdoLmxIw&oe=6548A92C',
+            title: 'Tuyển dụng thực tập sinh IT',
+            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/116687302_959241714549285_318408173653384421_n.jpg?stp=dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=0be577&_nc_ohc=Lan1rURmaIYAX9WUT7F&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfALk7mrBJMkQSQSAUsnbtw2TQbl29T7piyHhNnQTqxVnw&oe=656ACF03',
         },
         {
             to: '/group',
-            title: 'IT TUYỂN DỤNG - TÌM VIỆC LÀM',
-            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t39.30808-6/373742063_6306890222745275_6953131451643331470_n.png?stp=c85.0.100.100a_dst-png_p100x100&_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=kbEK6xJ_YfoAX8dqzG7&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfAwoYwsFQbPRniaf3tj37V22RMGG2XyJePVXIUZOVMrkw&oe=65488203',
+            title: 'Tuyển dụng thực tập sinh IT',
+            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/116687302_959241714549285_318408173653384421_n.jpg?stp=dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=0be577&_nc_ohc=Lan1rURmaIYAX9WUT7F&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfALk7mrBJMkQSQSAUsnbtw2TQbl29T7piyHhNnQTqxVnw&oe=656ACF03',
         },
         {
             to: '/group',
-            title: 'Nghiện Setups ✅',
-            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t39.30808-6/279643390_2562631983871116_3834027747983213686_n.jpg?stp=c81.0.100.100a_dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ijmb0wXnRo8AX_KkdAL&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfAHdczPkM87d0s7TMCg5Wyw4skrfvinSK7nWy5guLv0Bg&oe=6548922D',
-        },
-        {
-            to: '/group',
-            title: 'NHÀ KHOA HỌC',
-            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t39.30808-6/279643390_2562631983871116_3834027747983213686_n.jpg?stp=c81.0.100.100a_dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=ijmb0wXnRo8AX_KkdAL&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfAHdczPkM87d0s7TMCg5Wyw4skrfvinSK7nWy5guLv0Bg&oe=6548922D',
-        },
-        {
-            to: '/group',
-            title: 'Nhã Nam reading club',
-            src: 'https://scontent.fdad3-5.fna.fbcdn.net/v/t39.30808-6/329549658_2468318956672524_6427325944667607830_n.png?stp=c46.0.100.100a_dst-png_p100x100&_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=0wc9VkInm4UAX_5-yCV&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-5.fna&oh=00_AfAq3k2kovmHcxsmNPQ9Z8qEOjBnPqLkdJNNkxmS3t1mCw&oe=65483EA2',
+            title: 'Tuyển dụng thực tập sinh IT',
+            src: 'https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/116687302_959241714549285_318408173653384421_n.jpg?stp=dst-jpg_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=0be577&_nc_ohc=Lan1rURmaIYAX9WUT7F&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfALk7mrBJMkQSQSAUsnbtw2TQbl29T7piyHhNnQTqxVnw&oe=656ACF03',
         },
         {
             to: '/group',

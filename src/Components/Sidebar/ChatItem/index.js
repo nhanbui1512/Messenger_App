@@ -4,10 +4,64 @@ import globalStyles from '../../GlobalStyles/GlobalStyles.module.scss';
 import { Link } from 'react-router-dom';
 import Image from '../../Image';
 import CircleButton from '../../CircleButton';
-import { ElipseIcon } from '../../Icons';
+import {
+    Bell,
+    Block,
+    ElipseIcon,
+    ExclamationMark,
+    PhoneIcon,
+    RecordIcon,
+    StorageIcon,
+    TickIcon,
+    TrashCan,
+    UserIcon,
+} from '../../Icons';
+import PopperWrapper from '../../Popper/PopperWrapper';
+import Tippy from '@tippyjs/react/headless';
+import PopperItem from '../../Popper/PopperItem';
 
 const cx = classNames.bind(styles);
 export default function ChatItem() {
+    const items = [
+        {
+            title: 'Đánh dấu là chưa đọc',
+            icon: <TickIcon width={24} height={24} />,
+        },
+        {
+            title: 'Tắt thông báo',
+            icon: <Bell className={cx('menu-item-icon')} />,
+        },
+        {
+            title: 'Xem trang cá nhân',
+            icon: <UserIcon />,
+            separate: true,
+        },
+        {
+            title: 'Gọi thoại',
+            icon: <PhoneIcon className={cx('menu-item-icon')} />,
+        },
+        {
+            title: 'Chat video',
+            icon: <RecordIcon className={cx('menu-item-icon')} />,
+            separate: true,
+        },
+        {
+            title: 'Chặn',
+            icon: <Block width={24} height={24} />,
+        },
+        {
+            title: 'Lưu trữ đoạn chat',
+            icon: <StorageIcon width={24} height={24} />,
+        },
+        {
+            title: 'Xóa đoạn chat',
+            icon: <TrashCan width={24} height={24} />,
+        },
+        {
+            title: 'Báo cáo',
+            icon: <ExclamationMark width={24} height={24} />,
+        },
+    ];
     return (
         <div className={cx('div-box', globalStyles.pd_0_6)}>
             <Link className={cx('wrapper')}>
@@ -36,7 +90,24 @@ export default function ChatItem() {
                     </div>
                 </div>
             </Link>
-            <CircleButton className={cx('more-btn')} icon={<ElipseIcon />} />
+
+            <Tippy
+                appendTo={document.body}
+                interactive
+                delay={300}
+                offset={[120, -40]}
+                render={(atrs) => (
+                    <PopperWrapper arrow={false}>
+                        {items.map((item, index) => {
+                            return <PopperItem key={index} data={item} />;
+                        })}
+                    </PopperWrapper>
+                )}
+            >
+                <div>
+                    <CircleButton className={cx('more-btn')} icon={<ElipseIcon />} />
+                </div>
+            </Tippy>
         </div>
     );
 }

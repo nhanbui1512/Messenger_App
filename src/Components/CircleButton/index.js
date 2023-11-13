@@ -4,6 +4,7 @@ const cx = classNames.bind(styles);
 
 export default function CircleButton({ icon, onClick, className = {}, transparent = false }) {
     const classes = cx('wrapper', { [className]: className, transparent });
+
     return (
         <button onClick={onClick} className={classes}>
             {icon}

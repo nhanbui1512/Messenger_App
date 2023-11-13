@@ -376,3 +376,82 @@ export const LikeIcon = ({ width = 20, height = 20, className = {} }) => {
         </svg>
     );
 };
+
+export const TickIcon = ({ width = 24, height = 24, className = {} }) => {
+    return (
+        <svg
+            className={className}
+            viewBox="0 0 36 36"
+            fill="currentColor"
+            height={height}
+            width={width}
+        >
+            <path
+                clipRule="evenodd"
+                d="M26.378 9.169c.597.347.8 1.112.453 1.709l-9 15.5a1.25 1.25 0 01-1.965.256l-6.5-6.5a1.25 1.25 0 111.768-1.768l5.121 5.121a.25.25 0 00.393-.05L24.67 9.621a1.25 1.25 0 011.709-.453z"
+                fillRule="evenodd"
+            ></path>
+        </svg>
+    );
+};
+
+export const Bell = ({ width = 24, height = 24, className = {} }) => {
+    return (
+        <svg
+            viewBox="6 6 24 24"
+            fill="currentColor"
+            width={width}
+            height={height}
+            className={className}
+            overflow="visible"
+        >
+            <path d="M18 7a6.569 6.569 0 0 1 6.467 5.414l1.367 7.658a3 3 0 0 0 .832 1.594l.92.92a1.414 1.414 0 0 1-1 2.414H9.414a1.414 1.414 0 0 1-1-2.414l.92-.92a3 3 0 0 0 .832-1.594l1.367-7.658A6.569 6.569 0 0 1 18 7zM15.5 27c-.276 0-.504.226-.459.498a3 3 0 0 0 5.918 0c.045-.273-.183-.498-.459-.498h-5z"></path>
+        </svg>
+    );
+};
+
+export const Block = ({ width = 24, height = 24, className = {} }) => {
+    return (
+        <svg
+            viewBox="0 0 36 36"
+            className={className}
+            fill="currentColor"
+            height={height}
+            width={width}
+        >
+            <path
+                clipRule="evenodd"
+                d="M18 29c6.075 0 11-4.925 11-11S24.075 7 18 7 7 11.925 7 18s4.925 11 11 11zm-7-12.5a1 1 0 00-1 1v1a1 1 0 001 1h14a1 1 0 001-1v-1a1 1 0 00-1-1H11z"
+                fillRule="evenodd"
+            ></path>
+        </svg>
+    );
+};
+
+export const TrashCan = ({ width = 24, height = 24, className = {} }) => {
+    return (
+        <svg
+            viewBox="0 0 36 36"
+            className={className}
+            fill="currentColor"
+            height={height}
+            width={width}
+        >
+            <path d="M20.882 7c.685 0 1.312.387 1.618 1 .306.613.933 1 1.618 1H27a1 1 0 011 1v.5a1 1 0 01-1 1H9a1 1 0 01-1-1V10a1 1 0 011-1h2.882c.685 0 1.312-.387 1.618-1 .306-.613.933-1 1.618-1h5.764zm-10.281 6.5a1 1 0 00-.995 1.096l1.132 11.693A3 3 0 0013.724 29h8.552a3 3 0 002.986-2.711l1.132-11.693a1 1 0 00-.995-1.096H10.6z"></path>
+        </svg>
+    );
+};
+
+export const UserIcon = ({ width = 24, height = 24, className = {} }) => {
+    return (
+        <svg
+            viewBox="0 0 36 36"
+            className={className}
+            fill="currentColor"
+            height={height}
+            width={width}
+        >
+            <path d="M18 18c-2.554 0-4.75-1.793-4.75-5.695C13.25 9.123 15.25 7 18 7s4.75 2.123 4.75 5.305C22.75 16.207 20.554 18 18 18zm9 8.665c0 .74-.37 1.335-1.06 1.335H10.06C9.37 28 9 27.405 9 26.665 9 22.985 13.165 20 18 20s9 2.985 9 6.665z"></path>
+        </svg>
+    );
+};

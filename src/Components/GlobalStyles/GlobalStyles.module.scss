@@ -26,7 +26,8 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
-    overflow-y: overlay;
+    // overflow-y: overlay;
+    overflow: hidden;
 }
 
 //scrollbar

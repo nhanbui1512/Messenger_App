@@ -21,7 +21,7 @@
 }
 .groups {
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: overlay;
     overflow-x: hidden;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .isExpand {
-    width: 248px;
+    min-width: 248px;
     max-width: 248px;
     .footer {
         display: flex;
