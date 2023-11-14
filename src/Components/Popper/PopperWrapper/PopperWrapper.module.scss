@@ -4,9 +4,10 @@
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16);
     width: 344px;
     padding: 4px 0px;
-    max-height: 844px;
+    max-height: 580px;
     position: relative;
     z-index: 99;
+    overflow-y: overlay;
 }
 .arrow {
     fill: #fff;
