@@ -94,7 +94,7 @@ export default function MenuOption() {
     const [history, setHistory] = useState([{ data: items }]);
 
     return (
-        <PopperWrapper arrow={false} className={cx('ops_popper')}>
+        <PopperWrapper arrow={true} className={cx('ops_popper')}>
             {history.length > 1 && (
                 <Header
                     onBack={() => {

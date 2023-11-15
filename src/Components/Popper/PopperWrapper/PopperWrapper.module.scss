@@ -4,10 +4,11 @@
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16);
     width: 344px;
     padding: 4px 0px;
+}
+.children {
     max-height: 580px;
-    position: relative;
-    z-index: 99;
     overflow-y: overlay;
+    border-radius: 6px;
 }
 .arrow {
     fill: #fff;
