@@ -37,10 +37,16 @@
 }
 .mess-wrap {
   display: flex;
+
+  &:hover {
+    .action_wrapper {
+      display: flex;
+    }
+  }
 }
 .action_wrapper {
   width: fit-content;
-  display: flex;
+  display: none;
   align-items: center;
   padding: 0 5px;
 }
