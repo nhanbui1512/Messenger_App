@@ -9,7 +9,7 @@ export default function ChatContent() {
   return (
     <div className={cx('wrapper')}>
       <TimeBar />
-      <MessageItem />
+      <MessageItem multi />
     </div>
   );
 }
