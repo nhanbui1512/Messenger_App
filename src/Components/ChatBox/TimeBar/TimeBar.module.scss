@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  padding: 16px 20px;
+}
+.container {
+  max-width: 100%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+.time {
+  font-weight: 500;
+  font-size: 12px;
+  color: #65676b;
+  line-height: 15px;
+}
