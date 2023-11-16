@@ -1,48 +1,41 @@
 import classNames from 'classnames/bind';
 import styles from './MessageItem.module.scss';
 import Image from '../../Image';
+import Actions from './Actions';
 
 const cx = classNames.bind(styles);
 
-export default function MessageItem({ one, multi }) {
+export default function MessageItem({ myself = false, contents = [] }) {
+  const renderContent = () => {
+    return contents.map((item, index) => {
+      return (
+        <div key={index} className={cx('mess-wrap')}>
+          {myself && <Actions />}
+
+          <div className={cx('mess-container')}>
+            <span className={cx('mess-content')}>{item}</span>
+          </div>
+          {myself || <Actions />}
+        </div>
+      );
+    });
+  };
+
+  const multi = contents.length > 0;
+
   return (
     <div
       className={cx('wrapper', {
-        one,
         multi,
+        myself,
       })}
     >
-      <div className={cx('avatar-container')}>
-        <Image className={cx('avatar')} />
-      </div>
-      <div className={cx('list-content')}>
-        <div className={cx('mess-container')}>
-          <span className={cx('mess-content')}>
-            Nhãn này cho biết rằng một cuộc tấn công từ chối dịch vụ phân tán đang được thực hiện
-            bởi thiết bị bị nhiễm. Các luồng lưu lượng này được phát hiện như một phần của cuộc tấn
-            công DDoS do lượng luồng lưu lượng hướng đến cùng một địa chỉ IP.
-          </span>
+      {myself || (
+        <div className={cx('avatar-container')}>
+          <Image className={cx('avatar')} />
         </div>
-
-        <div className={cx('mess-container')}>
-          <span className={cx('mess-content')}>
-            Nhãn này cho biết rằng một cuộc tấn công từ chối dịch vụ phân tán đang được thực hiện
-            bởi thiết bị bị nhiễm. Các luồng lưu lượng này được phát hiện như một phần của cuộc tấn
-            công DDoS do lượng luồng lưu lượng hướng đến cùng một địa chỉ IP.
-          </span>
-        </div>
-
-        <div className={cx('mess-container')}>
-          <span className={cx('mess-content')}>Tin nhắn</span>
-        </div>
-        <div className={cx('mess-container')}>
-          <span className={cx('mess-content')}>
-            Nhãn này cho biết rằng một cuộc tấn công từ chối dịch vụ phân tán đang được thực hiện
-            bởi thiết bị bị nhiễm. Các luồng lưu lượng này được phát hiện như một phần của cuộc tấn
-            công DDoS do lượng luồng lưu lượng hướng đến cùng một địa chỉ IP.
-          </span>
-        </div>
-      </div>
+      )}
+      <div className={cx('list-content')}>{renderContent()}</div>
     </div>
   );
 }
