@@ -6,12 +6,12 @@ import ChatList from './ChatList';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-    return (
-        <div className={cx('wrapper')}>
-            <Navigation />
-            <ChatList />
-        </div>
-    );
+  return (
+    <div className={cx('wrapper')}>
+      <Navigation />
+      <ChatList />
+    </div>
+  );
 }
 
 export default Sidebar;

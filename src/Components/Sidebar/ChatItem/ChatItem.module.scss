@@ -1,82 +1,82 @@
 .div-box {
-    position: relative;
+  position: relative;
 }
 .wrapper {
-    display: flex;
-    border-radius: 8px;
-    max-height: 68px;
-    width: 100%;
-    text-decoration: none;
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.04);
-    }
+  display: flex;
+  border-radius: 8px;
+  max-height: 68px;
+  width: 100%;
+  text-decoration: none;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
 }
 .container {
-    display: flex;
-    width: 100%;
-    align-items: center;
+  display: flex;
+  width: 100%;
+  align-items: center;
 }
 .avatar {
-    padding-right: 10px;
+  padding-right: 10px;
 }
 .info-container {
-    display: flex;
-    flex-direction: column;
-    max-height: 35px;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 35px;
+  justify-content: center;
+  width: 100%;
 }
 .info {
-    display: flex;
+  display: flex;
 }
 .chat-name {
-    font-size: 14px;
-    color: var(--primary-black);
-    font-weight: 500;
-    text-align: left;
+  font-size: 14px;
+  color: var(--primary-black);
+  font-weight: 500;
+  text-align: left;
 }
 .message,
 .time {
-    color: #65676b;
-    font-size: 12px;
+  color: #65676b;
+  font-size: 12px;
 }
 
 .status-container {
-    max-width: 26px;
-    display: flex;
-    padding-left: 10px;
+  max-width: 26px;
+  display: flex;
+  padding-left: 10px;
 }
 .seen {
-    width: 16px;
-    height: 16px;
-    display: flex;
+  width: 16px;
+  height: 16px;
+  display: flex;
 }
 .avatar-seen {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .more-btn {
-    position: absolute;
-    right: 36px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    color: #65676b;
-    background-color: #fff;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
-    &:hover {
-        background-color: #f5f5f5;
-    }
+  position: absolute;
+  right: 36px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  color: #65676b;
+  background-color: #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  &:hover {
+    background-color: #f5f5f5;
+  }
 }
 
 .div-box:hover {
-    .more-btn {
-        display: flex;
-    }
+  .more-btn {
+    display: flex;
+  }
 }
 .menu-item-icon {
-    width: 16px;
-    height: 16px;
+  width: 16px;
+  height: 16px;
 }
