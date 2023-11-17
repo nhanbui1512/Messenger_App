@@ -8,11 +8,13 @@ const cx = classNames.bind(styles);
 export default function MessageItem({ myself = false, contents = [] }) {
   const renderContent = () => {
     return contents.map((item, index) => {
+      const first = index === 0;
+      const last = index === contents.length - 1;
       return (
         <div key={index} className={cx('mess-wrap')}>
           {myself && <Actions />}
 
-          <div className={cx('mess-container')}>
+          <div className={cx('mess-container', { first, last })}>
             <span className={cx('mess-content')}>{item}</span>
           </div>
           {myself || <Actions />}
