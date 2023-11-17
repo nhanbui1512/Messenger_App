@@ -12,7 +12,10 @@ export default function Header() {
     <div className={cx('container')}>
       <div className={cx('information')}>
         <div className={cx('user')}>
-          <Image className={cx('avatar')} />
+          <div className={cx('avatar-container')}>
+            <Image className={cx('avatar')} />
+            <GreenDot className={cx('avatar_greendot')} />
+          </div>
           <div className={cx('content')}>
             <span className={cx('user-name')}>Nhân Bùi</span>
             <span className={cx('status')}>Đang hoạt động</span>

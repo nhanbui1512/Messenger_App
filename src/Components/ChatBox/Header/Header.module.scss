@@ -21,11 +21,22 @@
         background-color: #F0F2F5;
     }
 }
+.avatar-container{
+    position: relative;
+}
 .avatar {
     width: 48px;
     height: 48px;
     padding: 6px;
     border: none !important;
+}
+.avatar_greendot{
+    position: absolute;
+    border: 1px solid #fff;
+    bottom: 7px;
+    right: 6px;
+    width: 12px;
+    height: 12px;
 }
 .content {
     display: flex;
