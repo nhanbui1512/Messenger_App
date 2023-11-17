@@ -23,21 +23,8 @@ export default function ChatList({ children }) {
         <Search />
       </div>
       <div className={cx('chat-list')}>
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
+        <ChatItem isGroup>Tập làm web group</ChatItem>
+        <ChatItem>Nhân Bùi</ChatItem>
       </div>
 
       <div className={cx('footer')}>

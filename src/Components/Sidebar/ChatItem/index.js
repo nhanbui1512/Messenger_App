@@ -22,7 +22,7 @@ import PopperItem from '../../Popper/PopperItem';
 import { GreenDot } from '../../GreenDot';
 
 const cx = classNames.bind(styles);
-export default function ChatItem() {
+export default function ChatItem({ isGroup = false, children = 'Người dùng' }) {
   const items = [
     {
       title: 'Đánh dấu là chưa đọc',
@@ -63,17 +63,35 @@ export default function ChatItem() {
       icon: <ExclamationMark width={24} height={24} />,
     },
   ];
+
+  function renderAvatar() {
+    return isGroup ? (
+      <div className={cx('avatar')}>
+        <div className={cx('avatar-container')}>
+          <Image className={cx('avatar-group')} />
+          <Image className={cx('avatar-group', { last: true })} />
+          <GreenDot className={cx('greendot')} />
+        </div>
+      </div>
+    ) : (
+      <div className={cx('avatar')}>
+        <div className={cx('avatar-container')}>
+          <Image />
+          <GreenDot className={cx('greendot')} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={cx('div-box', globalStyles.pd_0_6)}>
       <Link className={cx('wrapper')}>
         <div style={{ width: '100%' }} className={[globalStyles.pd_10]}>
           <div style={{ width: '100%' }} className={cx('container')}>
-            <div className={cx('avatar')}>
-              <Image />
-              <GreenDot className={cx('greendot')} />
-            </div>
+            {/* render avatar tùy theo chat với người dùng hoặc chat nhóm  */}
+            {renderAvatar()}
             <div className={cx('info-container')}>
-              <span className={cx('chat-name')}>Nhân Bùi</span>
+              <span className={cx('chat-name')}>{children}</span>
               <div></div>
               <div className={cx('info')}>
                 <span className={cx('message')}>Bạn : Ời ời</span>

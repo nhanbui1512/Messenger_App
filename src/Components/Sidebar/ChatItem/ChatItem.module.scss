@@ -17,14 +17,31 @@
   align-items: center;
 }
 .avatar {
-  position: relative;
   padding-right: 10px;
+}
+.avatar-container {
+  width: 48px;
+  height: 48px;
+  position: relative;
+}
+.avatar-group {
+  width: 32px;
+  height: 32px;
+}
+.avatar-group:first-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.last {
+  position: absolute;
+  bottom: 0;
 }
 .greendot {
   position: absolute;
   border: 1px solid #fff;
   bottom: 0;
-  right: 12px;
+  right: 5px;
   width: 12px;
   height: 12px;
 }
