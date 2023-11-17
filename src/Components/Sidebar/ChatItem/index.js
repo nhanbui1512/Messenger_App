@@ -94,8 +94,9 @@ export default function ChatItem() {
       <Tippy
         appendTo={document.body}
         interactive
+        placement="right"
         delay={200}
-        offset={[120, -40]}
+        offset={[0, -200]}
         render={(atrs) => (
           <PopperWrapper arrow={false}>
             {items.map((item, index) => {
