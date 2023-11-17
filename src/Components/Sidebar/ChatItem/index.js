@@ -19,6 +19,7 @@ import {
 import PopperWrapper from '../../Popper/PopperWrapper';
 import Tippy from '@tippyjs/react/headless';
 import PopperItem from '../../Popper/PopperItem';
+import { GreenDot } from '../../GreenDot';
 
 const cx = classNames.bind(styles);
 export default function ChatItem() {
@@ -69,6 +70,7 @@ export default function ChatItem() {
           <div style={{ width: '100%' }} className={cx('container')}>
             <div className={cx('avatar')}>
               <Image />
+              <GreenDot className={cx('greendot')} />
             </div>
             <div className={cx('info-container')}>
               <span className={cx('chat-name')}>Nhân Bùi</span>

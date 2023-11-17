@@ -1,8 +1,7 @@
-.wrapper{
+.wrapper {
   display: flex;
-  width: 4px;
-  height: 4px;
-  background-color: #5AD539;
+  min-width: 4px;
+  min-height: 4px;
+  background-color: #5ad539;
   border-radius: 50%;
-  
 }
