@@ -6,12 +6,12 @@ import Sidebar from '../../Components/Sidebar';
 const cx = classNames.bind(styles);
 
 function DashboardPage() {
-    return (
-        <div className={cx('wrapper')}>
-            <Sidebar />
-            <ChatBox />
-        </div>
-    );
+  return (
+    <div className={cx('wrapper')}>
+      <Sidebar />
+      <ChatBox />
+    </div>
+  );
 }
 
 export default DashboardPage;
