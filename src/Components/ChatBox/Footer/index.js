@@ -42,7 +42,7 @@ export default function Footer() {
         <CircleButton className={cx('menu-btn', { scale: scale })} transparent icon={<GifIcon />} />
         <div className={cx('chat-input')}>
           <div className={cx('input-container')}>
-            <textarea value={valueChat} onInput={handleInput} rows="1"></textarea>
+            <textarea placeholder="Aa" value={valueChat} onInput={handleInput} rows="1"></textarea>
           </div>
         </div>
       </div>
