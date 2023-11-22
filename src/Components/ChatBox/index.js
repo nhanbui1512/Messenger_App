@@ -15,7 +15,7 @@ function ChatBox() {
       <div className={cx('content')}>
         <ChatContent />
       </div>
-      <div style={{ height: 60 }} className={cx('footer')}>
+      <div className={cx('footer')}>
         <Footer />
       </div>
     </div>
