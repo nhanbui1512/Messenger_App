@@ -1,37 +1,65 @@
 import classNames from 'classnames/bind';
 import styles from './Footer.module.scss';
 import CircleButton from '../../CircleButton';
-import { FileIcon, GifIcon, ImageIcon, LikeIcon, PlusIcon } from '../../Icons';
+import { FileIcon, GifIcon, ImageIcon, LikeIcon, PlusIcon, Send } from '../../Icons';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 export default function Footer() {
+  const [valueChat, setValueChat] = useState('');
+
+  const [scale, setScale] = useState(false);
+
+  const handleInput = (e) => {
+    const textarea = e.target;
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+    setValueChat(e.target.value);
+
+    if (e.target.value === '') {
+      setScale(false);
+    } else {
+      setScale(true);
+    }
+  };
   return (
     <div className={cx('wrapper')}>
       <div className={cx('group-btn')}>
-        <CircleButton transparent icon={<PlusIcon />} />
-        <CircleButton transparent icon={<ImageIcon />} />
-        <CircleButton transparent icon={<FileIcon />} />
-        <CircleButton transparent icon={<GifIcon />} />
+        <CircleButton className={cx('menu-btn')} transparent icon={<PlusIcon />} />
       </div>
-      <div className={cx('input-container')}>
-        <textarea
-          style={{
-            resize: 'none',
-            width: '100%',
-          }}
-          onInput={(e) => {
-            const textarea = e.target;
-            textarea.style.height = 'auto';
-            textarea.style.height = textarea.scrollHeight + 'px';
-          }}
-          defaultValue={' Đây là văn bản mẫu Có thể nằm trên nhiều dòng'}
-          rows="1"
-          cols="50"
-        ></textarea>
+      <div className={cx('center')}>
+        <CircleButton
+          className={cx('menu-btn', { scale: scale })}
+          transparent
+          icon={<ImageIcon />}
+        />
+        <CircleButton
+          className={cx('menu-btn', { scale: scale })}
+          transparent
+          icon={<FileIcon />}
+        />
+        <CircleButton className={cx('menu-btn', { scale: scale })} transparent icon={<GifIcon />} />
+        <div className={cx('chat-input')}>
+          <div className={cx('input-container')}>
+            <textarea value={valueChat} onInput={handleInput} rows="1"></textarea>
+          </div>
+        </div>
       </div>
+
       <div>
-        <CircleButton className={cx('like-btn')} transparent icon={<LikeIcon />} />
+        {valueChat === '' ? (
+          <CircleButton
+            onClick={() => {
+              setScale(false);
+            }}
+            className={cx('like-btn')}
+            transparent
+            icon={<LikeIcon />}
+          />
+        ) : (
+          <CircleButton transparent icon={<Send />} />
+        )}
       </div>
     </div>
   );

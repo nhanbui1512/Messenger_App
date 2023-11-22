@@ -8,16 +8,21 @@
 .group-btn {
   display: flex;
 }
+.chat-input {
+  padding: 0 8px;
+  flex: 1;
+  min-height: 36px;
+}
 .input-container {
   width: 100%;
   display: flex;
   background-color: rgba(134, 142, 153, 0.1);
   height: 100%;
   border-radius: 20px;
-  margin: 0px 8px;
   align-items: flex-end;
   textarea {
     background-color: transparent;
+
     max-height: 124px;
     margin-bottom: 8px;
     margin-top: 8px;
@@ -30,5 +35,22 @@
     outline: none;
     border: none;
     overflow-y: scroll;
+    resize: none;
   }
+}
+
+.center {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: flex-start;
+}
+.menu-btn {
+  transform: scale(1);
+  transition: 0.4s ease;
+}
+.scale {
+  position: absolute;
+  transform: scale(0);
+  transition: 0.4s ease;
 }
