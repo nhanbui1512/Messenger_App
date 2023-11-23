@@ -6,16 +6,17 @@ import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-export default function Footer() {
+export default function Footer({ setMessages }) {
   const [valueChat, setValueChat] = useState('');
-
   const [scale, setScale] = useState(false);
 
   const handleInput = (e) => {
+    setValueChat(e.target.value);
+
+    // change height for textarea tag
     const textarea = e.target;
     textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
-    setValueChat(e.target.value);
 
     if (e.target.value === '') {
       setScale(false);
@@ -23,6 +24,25 @@ export default function Footer() {
       setScale(true);
     }
   };
+
+  const handleSendMessage = () => {
+    // mount message into DOM
+    setMessages((prevState) => {
+      const result = [
+        ...prevState,
+        {
+          time: '11:03',
+          contents: [valueChat],
+          myself: true,
+        },
+      ];
+      return result;
+    });
+
+    // visible menu buttons
+    setScale(false);
+  };
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('group-btn')}>
@@ -42,7 +62,19 @@ export default function Footer() {
         <CircleButton className={cx('menu-btn', { scale: scale })} transparent icon={<GifIcon />} />
         <div className={cx('chat-input')}>
           <div className={cx('input-container')}>
-            <textarea placeholder="Aa" value={valueChat} onInput={handleInput} rows="1"></textarea>
+            <textarea
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  handleSendMessage();
+                  setValueChat('');
+                }
+              }}
+              placeholder="Aa"
+              value={valueChat}
+              onInput={handleInput}
+              rows="1"
+            ></textarea>
           </div>
         </div>
       </div>
@@ -58,7 +90,13 @@ export default function Footer() {
             icon={<LikeIcon />}
           />
         ) : (
-          <CircleButton transparent icon={<Send />} />
+          <CircleButton
+            onClick={() => {
+              handleSendMessage();
+            }}
+            transparent
+            icon={<Send />}
+          />
         )}
       </div>
     </div>
