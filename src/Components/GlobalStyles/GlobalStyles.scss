@@ -141,9 +141,14 @@ input[type='range' i] {
 }
 
 //custom tippy tooltip
-
-.tippy-box {
-  background-color: #323436;
-  border-radius: 8px;
-  color: #e4e6eb;
+body {
+  .tippy-box {
+    background-color: #323436;
+    border-radius: 8px;
+    color: var(--primary-text);
+    font-size: 0.75rem;
+  }
+  .tippy-content {
+    padding: 8px;
+  }
 }

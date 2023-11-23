@@ -103,22 +103,30 @@ export default function Footer({ setMessages }) {
 
       <div>
         {valueChat === '' ? (
-          <CircleButton
-            onClick={() => {
-              setScale(false);
-            }}
-            className={cx('like-btn')}
-            transparent
-            icon={<LikeIcon />}
-          />
+          <Tippy animation="scale-subtle" content="Gửi lượt thích">
+            <div>
+              <CircleButton
+                onClick={() => {
+                  setScale(false);
+                }}
+                className={cx('like-btn')}
+                transparent
+                icon={<LikeIcon />}
+              />
+            </div>
+          </Tippy>
         ) : (
-          <CircleButton
-            onClick={() => {
-              handleSendMessage();
-            }}
-            transparent
-            icon={<Send />}
-          />
+          <Tippy animation="scale-subtle" content="Nhấn Enter để gửi">
+            <div>
+              <CircleButton
+                onClick={() => {
+                  handleSendMessage();
+                }}
+                transparent
+                icon={<Send />}
+              />
+            </div>
+          </Tippy>
         )}
       </div>
     </div>

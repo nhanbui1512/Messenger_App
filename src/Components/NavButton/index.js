@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 function NavButton({ icon, className = {}, src = '', title, to, isExpand }) {
   const classes = cx('wrapper', { [className]: className, title });
   return (
-    <Tippy interactive placement="right" delay={300} render={() => <NavPopper title={title} />}>
+    <Tippy placement="right" delay={300} render={() => <NavPopper title={title} />}>
       <NavLink
         to={to}
         className={(nav) => cx(classes, { active: nav.isActive, isExpand: isExpand })}

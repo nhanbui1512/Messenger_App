@@ -4,6 +4,7 @@ import Image from '../../Image';
 import { ElipseIcon, PhoneIcon, RecordIcon } from '../../Icons';
 import CircleButton from '../../CircleButton';
 import { GreenDot } from '../../GreenDot';
+import Tippy from '@tippyjs/react';
 
 const cx = classNames.bind(styles);
 
@@ -23,23 +24,37 @@ export default function Header() {
         </div>
       </div>
       <div className={cx('contact')}>
-        <CircleButton
-          transparent
-          className={cx('cont-btn')}
-          icon={<PhoneIcon className={cx('icon')} />}
-        />
-        <CircleButton
-          transparent
-          className={cx('cont-btn')}
-          icon={<RecordIcon className={cx('icon')} />}
-        >
-          <GreenDot className={cx('green_dot')} />
-        </CircleButton>
-        <CircleButton
-          transparent
-          className={cx('cont-btn')}
-          icon={<ElipseIcon width={20} height={20} className={cx('icon')} />}
-        />
+        <Tippy content="Bắt đầu gọi thoại">
+          <div>
+            <CircleButton
+              transparent
+              className={cx('cont-btn')}
+              icon={<PhoneIcon className={cx('icon')} />}
+            />
+          </div>
+        </Tippy>
+
+        <Tippy content="Bắt đầu gọi video">
+          <div>
+            <CircleButton
+              transparent
+              className={cx('cont-btn')}
+              icon={<RecordIcon className={cx('icon')} />}
+            >
+              <GreenDot className={cx('green_dot')} />
+            </CircleButton>
+          </div>
+        </Tippy>
+
+        <Tippy content="Thông tin về cuộc trò chuyện">
+          <div>
+            <CircleButton
+              transparent
+              className={cx('cont-btn')}
+              icon={<ElipseIcon width={20} height={20} className={cx('icon')} />}
+            />
+          </div>
+        </Tippy>
       </div>
     </div>
   );
