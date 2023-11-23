@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './ChatItem.module.scss';
-import globalStyles from '../../GlobalStyles/GlobalStyles.module.scss';
 import { Link } from 'react-router-dom';
 import Image from '../../Image';
 import CircleButton from '../../CircleButton';
@@ -63,9 +62,9 @@ export default function ChatItem() {
     },
   ];
   return (
-    <div className={cx('div-box', globalStyles.pd_0_6)}>
+    <div className={cx('div-box', 'pd_0_6')}>
       <Link className={cx('wrapper')}>
-        <div style={{ width: '100%' }} className={[globalStyles.pd_10]}>
+        <div style={{ width: '100%' }} className={['pd_10']}>
           <div style={{ width: '100%' }} className={cx('container')}>
             <div className={cx('avatar')}>
               <Image />

@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
-import globalStyles from '../GlobalStyles/GlobalStyles.module.scss';
 import { SearchIcon } from '../Icons';
 import CircleButton from '../CircleButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +13,7 @@ export default function Search() {
 
   return (
     <div className={cx('wrapper')}>
-      <div className={cx('container', globalStyles.pd_0_16)}>
+      <div className={cx('container', 'pd_0_16')}>
         {backInput && (
           <CircleButton
             onClick={() => {
@@ -24,7 +23,7 @@ export default function Search() {
             icon={<FontAwesomeIcon className={cx('back-icon')} icon={faArrowLeft} />}
           />
         )}
-        <label className={cx('', globalStyles.row)}>
+        <label className={cx('', ['row'])}>
           <span className={cx('search-btn')}>
             <SearchIcon className={cx('search-icon')} />
           </span>

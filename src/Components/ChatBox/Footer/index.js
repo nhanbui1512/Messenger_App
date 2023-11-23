@@ -4,6 +4,10 @@ import CircleButton from '../../CircleButton';
 import { FileIcon, GifIcon, ImageIcon, LikeIcon, PlusIcon, Send } from '../../Icons';
 import { useState } from 'react';
 
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale-subtle.css';
+import Tippy from '@tippyjs/react';
+
 const cx = classNames.bind(styles);
 
 export default function Footer({ setMessages }) {
@@ -45,21 +49,39 @@ export default function Footer({ setMessages }) {
 
   return (
     <div className={cx('wrapper')}>
-      <div className={cx('group-btn')}>
-        <CircleButton className={cx('menu-btn')} transparent icon={<PlusIcon />} />
-      </div>
+      <Tippy animation={'scale-subtle'} content="Mở hành động khác">
+        <div className={cx('group-btn')}>
+          <CircleButton className={cx('menu-btn')} transparent icon={<PlusIcon />} />
+        </div>
+      </Tippy>
       <div className={cx('center')}>
-        <CircleButton
-          className={cx('menu-btn', { scale: scale })}
-          transparent
-          icon={<ImageIcon />}
-        />
-        <CircleButton
-          className={cx('menu-btn', { scale: scale })}
-          transparent
-          icon={<FileIcon />}
-        />
-        <CircleButton className={cx('menu-btn', { scale: scale })} transparent icon={<GifIcon />} />
+        <Tippy animation={'scale-subtle'} content={'Đính kèm file'}>
+          <div>
+            <CircleButton
+              className={cx('menu-btn', { scale: scale })}
+              transparent
+              icon={<ImageIcon />}
+            />
+          </div>
+        </Tippy>
+        <Tippy animation={'scale-subtle'} content={'Chọn nhãn dán'}>
+          <div>
+            <CircleButton
+              className={cx('menu-btn', { scale: scale })}
+              transparent
+              icon={<FileIcon />}
+            />
+          </div>
+        </Tippy>
+        <Tippy animation={'scale-subtle'} content={'Chọn file gif'}>
+          <div>
+            <CircleButton
+              className={cx('menu-btn', { scale: scale })}
+              transparent
+              icon={<GifIcon />}
+            />
+          </div>
+        </Tippy>
         <div className={cx('chat-input')}>
           <div className={cx('input-container')}>
             <textarea

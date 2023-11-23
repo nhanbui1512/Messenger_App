@@ -9,7 +9,6 @@ import {
   StorageIcon,
   UsersIcon,
 } from '../Icons';
-import GlobalStyles from '../GlobalStyles/GlobalStyles.module.scss';
 import DropBar from '../DropBar';
 import { useState } from 'react';
 import MenuOption from '../MenuOption';
@@ -106,7 +105,7 @@ function Navigation() {
           </div>
 
           <div className={cx('groups')}>
-            <div className={[GlobalStyles.pd_0_8]}>
+            <div className={['pd_0_8']}>
               {groupBtns.map((item, index) => {
                 return (
                   <NavButton
@@ -123,7 +122,7 @@ function Navigation() {
         </div>
 
         <div>
-          <div className={cx('footer', GlobalStyles.pd_12_0)}>
+          <div className={cx('footer', 'pd_12_0')}>
             <div className={cx('ops-container')}>
               <div
                 className={cx('ops-wrap')}
