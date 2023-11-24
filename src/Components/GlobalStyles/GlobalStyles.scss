@@ -16,6 +16,9 @@
   --primary-text: #e4e6eb;
   --primary-black: #050505;
   --primary-blue: #1877f2;
+  --shadow-1: rgba(0, 0, 0, 0.1);
+  --shadow-2: rgba(0, 0, 0, 0.2);
+  --shadow-inset: rgba(255, 255, 255, 0.5);
 }
 * {
   box-sizing: border-box;
@@ -83,6 +86,9 @@ input[type='range' i] {
 }
 .pd_10 {
   padding: 10px;
+}
+.relative{
+  position: relative;
 }
 @font-face {
   font-family: SegoeUI;
