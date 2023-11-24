@@ -31,17 +31,32 @@ export default function Footer({ setMessages }) {
 
   const handleSendMessage = () => {
     // mount message into DOM
-    setMessages((prevState) => {
-      const result = [
-        ...prevState,
-        {
-          time: '11:03',
-          contents: [valueChat],
-          myself: true,
-        },
-      ];
-      return result;
-    });
+    if (valueChat.trim() !== '') {
+      const moment = new Date();
+
+      const hours = moment.getHours();
+      const minutes = String(moment.getMinutes()).padStart(2, '0');
+      const timeStr = `${hours}:${minutes}`;
+      setMessages((prevState) => {
+        const lastMessage = prevState[prevState.length - 1];
+
+        if (!lastMessage.myself || lastMessage.time !== timeStr) {
+          const newMessage = [
+            ...prevState,
+            {
+              time: timeStr,
+              contents: [valueChat],
+              myself: true,
+            },
+          ];
+          return newMessage;
+        } else if (lastMessage.myself) {
+          const newState = [...prevState];
+          newState[newState.length - 1].contents.push(valueChat);
+          return newState;
+        }
+      });
+    }
 
     // visible menu buttons
     setScale(false);
