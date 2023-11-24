@@ -6,6 +6,7 @@ import Search from '../../Search';
 import ChatItem from '../ChatItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { Link, Route, Routes } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 export default function ChatList({ children }) {
@@ -15,14 +16,21 @@ export default function ChatList({ children }) {
         <div className={cx('title-wrap')}>
           <h1 className={cx('title')}>Chat</h1>
         </div>
-        <div>
+        <Link to={'/new'}>
           <CircleButton icon={<EditIcon />} />
-        </div>
+        </Link>
       </div>
       <div className={cx('search-box')}>
         <Search />
       </div>
       <div className={cx('chat-list')}>
+        <Routes>
+          <Route
+            element={<ChatItem newMess name={'Tin nhắn mới'}></ChatItem>}
+            key={1}
+            path="/new"
+          ></Route>
+        </Routes>
         <ChatItem />
         <ChatItem />
         <ChatItem />

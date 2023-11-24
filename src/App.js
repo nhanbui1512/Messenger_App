@@ -11,15 +11,6 @@ function App() {
           <Routes>
             <Route
               key={0}
-              path="/"
-              element={
-                <DefaultLayout>
-                  <DashboardPage />
-                </DefaultLayout>
-              }
-            />
-            <Route
-              key={0}
               path="/active"
               element={
                 <DefaultLayout>
@@ -27,6 +18,16 @@ function App() {
                 </DefaultLayout>
               }
             ></Route>
+
+            <Route
+              key={0}
+              path="/*"
+              element={
+                <DefaultLayout>
+                  <DashboardPage />
+                </DefaultLayout>
+              }
+            />
           </Routes>
         </div>
       </BrowserRouter>

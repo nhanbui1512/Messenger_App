@@ -47,8 +47,8 @@
   padding-left: 10px;
 }
 .seen {
-  width: 16px;
-  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
   display: flex;
 }
 .avatar-seen {
@@ -79,4 +79,22 @@
 .menu-item-icon {
   width: 16px;
   height: 16px;
+}
+.cancle{
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 6px;
+&:hover{
+  background-color: #F0F2F5;
+}
+  
+}
+.xmark-icon{
+  font-size: 16px;
+  fill: #1c1e21;
 }
