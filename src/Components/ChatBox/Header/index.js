@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import Image from '../../Image';
+import CircleImage from '../../CircleImage';
 import { ElipseIcon, PhoneIcon, RecordIcon } from '../../Icons';
 import CircleButton from '../../CircleButton';
 import { GreenDot } from '../../GreenDot';
@@ -14,7 +14,7 @@ export default function Header() {
       <div className={cx('information')}>
         <div className={cx('user')}>
           <div className={cx('avatar-container')}>
-            <Image className={cx('avatar')} />
+            <CircleImage className={cx('avatar')} />
             <GreenDot className={cx('avatar_greendot')} />
           </div>
           <div className={cx('content')}>

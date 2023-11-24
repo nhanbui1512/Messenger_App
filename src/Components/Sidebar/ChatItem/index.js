@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './ChatItem.module.scss';
 import { Link } from 'react-router-dom';
-import Image from '../../Image';
+import CircleImage from '../../CircleImage';
 import CircleButton from '../../CircleButton';
 import {
   Bell,
@@ -67,7 +67,7 @@ export default function ChatItem() {
         <div style={{ width: '100%' }} className={['pd_10']}>
           <div style={{ width: '100%' }} className={cx('container')}>
             <div className={cx('avatar')}>
-              <Image />
+              <CircleImage />
             </div>
             <div className={cx('info-container')}>
               <span className={cx('chat-name')}>Nhân Bùi</span>
