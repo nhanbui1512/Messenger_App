@@ -1,18 +1,19 @@
 import classNames from 'classnames/bind';
 import styles from './Footer.module.scss';
 import CircleButton from '../../CircleButton';
-import { FileIcon, GifIcon, ImageIcon, LikeIcon, PlusIcon, Send } from '../../Icons';
+import { Emoji, FileIcon, GifIcon, ImageIcon, LikeIcon, PlusIcon, Send } from '../../Icons';
 import { useState } from 'react';
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale-subtle.css';
 import Tippy from '@tippyjs/react';
-
+import EmojiPicker from 'emoji-picker-react';
 const cx = classNames.bind(styles);
 
 export default function Footer({ setMessages }) {
   const [valueChat, setValueChat] = useState('');
   const [scale, setScale] = useState(false);
+  const [emoji, setEmoji] = useState(false);
 
   const handleInput = (e) => {
     setValueChat(e.target.value);
@@ -37,6 +38,7 @@ export default function Footer({ setMessages }) {
       const hours = moment.getHours();
       const minutes = String(moment.getMinutes()).padStart(2, '0');
       const timeStr = `${hours}:${minutes}`;
+
       setMessages((prevState) => {
         const lastMessage = prevState[prevState.length - 1];
 
@@ -60,6 +62,7 @@ export default function Footer({ setMessages }) {
 
     // visible menu buttons
     setScale(false);
+    setValueChat('');
   };
 
   return (
@@ -104,14 +107,38 @@ export default function Footer({ setMessages }) {
                 if (e.key === 'Enter') {
                   e.preventDefault();
                   handleSendMessage();
-                  setValueChat('');
                 }
               }}
               placeholder="Aa"
               value={valueChat}
               onInput={handleInput}
               rows="1"
-            ></textarea>
+            />
+
+            <div
+              onClick={() => {
+                setEmoji(!emoji);
+              }}
+              className={cx('emoji-btn')}
+            >
+              <div style={{ display: 'flex' }}>
+                <Emoji />
+              </div>
+            </div>
+
+            {emoji && (
+              <div className={cx('emoji-wrapper')}>
+                <EmojiPicker
+                  previewConfig={{
+                    showPreview: false,
+                  }}
+                  onEmojiClick={(emojiData) => {
+                    setValueChat(valueChat + emojiData.emoji);
+                    setEmoji(!emoji);
+                  }}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,20 +1,20 @@
 .wrapper {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16);
-    width: 344px;
-    padding: 4px 0px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16);
+  width: 344px;
+  padding: 4px 0px;
 }
 .children {
-    max-height: 580px;
-    overflow-y: overlay;
-    border-radius: 6px;
+  max-height: 580px;
+  overflow-y: overlay;
+  border-radius: 6px;
 }
 .arrow {
-    fill: #fff;
-    height: 12px;
-    width: 25px;
-    position: absolute;
-    left: 10px;
-    bottom: -10px;
+  fill: #fff;
+  height: 12px;
+  width: 25px;
+  position: absolute;
+  left: 10px;
+  bottom: -10px;
 }
