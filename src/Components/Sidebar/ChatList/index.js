@@ -31,7 +31,7 @@ export default function ChatList({ children }) {
             path="/new"
           ></Route>
         </Routes>
-        <ChatItem />
+        <ChatItem name={'Trọng Tuấn'} />
         <ChatItem />
         <ChatItem />
         <ChatItem />

@@ -83,9 +83,9 @@ export default function ChatItem({ name, newMess = false }) {
             </div>
             <div className={cx('status-container')}>
               {newMess ? (
-                <div className={cx('cancle')}>
+                <Link to={'/'} className={cx('cancle')}>
                   <FontAwesomeIcon className={cx('xmark-icon')} icon={faXmark} />
-                </div>
+                </Link>
               ) : (
                 <div className={cx('seen')}>
                   <img

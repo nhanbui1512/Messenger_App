@@ -2,15 +2,12 @@ import classNames from 'classnames/bind';
 import styles from './MessageItem.module.scss';
 import CircleImage from '../../CircleImage';
 import Actions from './Actions';
-import Reactions from './Reactions';
+// import Reactions from './Reactions';
 import Tippy from '@tippyjs/react/headless';
-import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 export default function MessageItem({ myself = false, contents = [] }) {
-  const [emotions, setEmotions] = useState(false);
-
   const renderContent = () => {
     return contents.map((item, index) => {
       const first = index === 0;
@@ -22,12 +19,10 @@ export default function MessageItem({ myself = false, contents = [] }) {
             hideOnClick
             placement="right"
             interactive
-            onHide={() => {
-              setEmotions(false);
-            }}
+            delay={[0, 300]}
             appendTo={'parent'}
             render={(atrs) => {
-              return <Actions emotions={emotions} setEmotions={setEmotions} />;
+              return <Actions />;
             }}
           >
             <div className={cx('mess-container', { first, last })}>
@@ -35,9 +30,9 @@ export default function MessageItem({ myself = false, contents = [] }) {
             </div>
           </Tippy>
 
-          <div>
+          {/* <div> // reactions of users
             <Reactions />
-          </div>
+          </div> */}
         </div>
       );
     });
