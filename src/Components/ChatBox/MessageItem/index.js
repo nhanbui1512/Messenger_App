@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './MessageItem.module.scss';
 import CircleImage from '../../CircleImage';
 import Actions from './Actions';
-// import Reactions from './Reactions';
+import Reactions from './Reactions';
 import Tippy from '@tippyjs/react/headless';
 
 const cx = classNames.bind(styles);
@@ -26,13 +26,13 @@ export default function MessageItem({ myself = false, contents = [] }) {
             }}
           >
             <div className={cx('mess-container', { first, last })}>
-              <span className={cx('mess-content')}>{item}</span>
+              <span className={cx('mess-content')}>{item.text}</span>
             </div>
           </Tippy>
-
-          {/* <div> // reactions of users
-            <Reactions />
-          </div> */}
+          {/* // reactions of users */}
+          <div>
+            <Reactions reactions={item.reactions} />
+          </div>
         </div>
       );
     });
