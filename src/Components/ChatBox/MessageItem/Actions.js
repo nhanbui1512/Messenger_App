@@ -7,6 +7,8 @@ import reactsImage from '../../../assests/images/reactions';
 
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
+import PopperWrapper from '../../Popper/PopperWrapper';
+import PopperItem from '../../Popper/PopperItem';
 
 import 'tippy.js/dist/tippy.css';
 import Image from '../../Image';
@@ -16,7 +18,19 @@ const cx = classNames.bind(styles);
 
 export default function Actions() {
   const [emotions, setEmotions] = useState(false);
+  const [menu, setMenu] = useState(false);
 
+  const items = [
+    {
+      title: 'Xóa, gỡ',
+    },
+    {
+      title: 'Chuyển tiếp',
+    },
+    {
+      title: 'Ghim',
+    },
+  ];
   return (
     <div className={cx('action_wrapper')}>
       <Tippy zIndex={98} content="Bày tỏ cảm xúc">
@@ -86,11 +100,36 @@ export default function Actions() {
       </Tippy>
       <Tippy content="Xem thêm">
         <div>
-          <CircleButton
-            transparent
-            className={cx('action-btn')}
-            icon={<FontAwesomeIcon icon={faEllipsisVertical} />}
-          />
+          <HeadlessTippy
+            visible={menu}
+            placement="top"
+            interactive
+            appendTo={document.body}
+            render={() => (
+              <PopperWrapper
+                onMouseLeave={() => {
+                  setMenu(false);
+                }}
+                arrow={false}
+                className={cx('expand-menu')}
+              >
+                {items.map((item, index) => {
+                  return <PopperItem className={cx('menu-item')} data={item} />;
+                })}
+              </PopperWrapper>
+            )}
+          >
+            <div>
+              <CircleButton
+                onClick={() => {
+                  setMenu(!menu);
+                }}
+                transparent
+                className={cx('action-btn')}
+                icon={<FontAwesomeIcon icon={faEllipsisVertical} />}
+              />
+            </div>
+          </HeadlessTippy>
         </div>
       </Tippy>
     </div>

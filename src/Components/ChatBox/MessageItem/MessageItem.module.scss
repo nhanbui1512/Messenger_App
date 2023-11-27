@@ -142,7 +142,9 @@
   height: 16px;
   font-size: 0.6875rem;
 }
-
+.expand-menu {
+  width: fit-content !important;
+}
 .myself {
   justify-content: flex-end;
   margin-right: 10px;
@@ -172,4 +174,8 @@
   .last {
     border-bottom-right-radius: 18px;
   }
+}
+.menu-item {
+  padding: 6px 4px;
+  min-width: 140px;
 }

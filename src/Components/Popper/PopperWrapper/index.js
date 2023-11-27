@@ -2,9 +2,13 @@ import classNames from 'classnames/bind';
 import styles from './PopperWrapper.module.scss';
 const cx = classNames.bind(styles);
 
-export default function PopperWrapper({ children, className, styles, arrow = true }) {
+export default function PopperWrapper({ children, className, styles, arrow = true, onMouseLeave }) {
   return (
-    <div style={styles} className={cx('wrapper', { [className]: className })}>
+    <div
+      onMouseLeave={onMouseLeave}
+      style={styles}
+      className={cx('wrapper', { [className]: className })}
+    >
       <div className={cx('children')}>{children}</div>
 
       {arrow && (
