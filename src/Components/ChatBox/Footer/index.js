@@ -47,16 +47,32 @@ export default function Footer({ setMessages }) {
             ...prevState,
             {
               time: timeStr,
-              contents: [valueChat],
+              contents: [
+                {
+                  text: valueChat,
+                  reactions: {
+                    data: [],
+                    countReact: 0,
+                  },
+                },
+              ],
               myself: true,
             },
           ];
           return newMessage;
         } else if (lastMessage.myself) {
           const newState = [...prevState];
-          newState[newState.length - 1].contents.push(valueChat);
+          newState[newState.length - 1].contents.push({
+            text: valueChat,
+            reactions: {
+              data: [],
+              countReact: 0,
+            },
+          });
           return newState;
         }
+
+        return prevState;
       });
     }
 
@@ -162,7 +178,7 @@ export default function Footer({ setMessages }) {
             <div>
               <CircleButton
                 onClick={() => {
-                  handleSendMessage();
+                  // handleSendMessage();
                 }}
                 transparent
                 icon={<Send />}

@@ -114,7 +114,7 @@ export default function Actions() {
                 className={cx('expand-menu')}
               >
                 {items.map((item, index) => {
-                  return <PopperItem className={cx('menu-item')} data={item} />;
+                  return <PopperItem key={index} className={cx('menu-item')} data={item} />;
                 })}
               </PopperWrapper>
             )}
