@@ -10,11 +10,11 @@ export default function ChatContent({ data }) {
   const wrapperRef = useRef(null);
 
   const renderMessages = () => {
-    return data.map((item, index) => {
+    return data?.map((item) => {
       return (
-        <div key={index}>
-          <TimeBar>{item.time}</TimeBar>
-          <MessageItem key={index} contents={item.contents} myself={item.myself ? true : false} />
+        <div key={item.id}>
+          <TimeBar>{item.createAtStr}</TimeBar>
+          <MessageItem messages={item.messages} myself={item.myself} />
         </div>
       );
     });

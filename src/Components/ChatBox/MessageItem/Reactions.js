@@ -5,7 +5,7 @@ import Image from '../../Image';
 const cx = classNames.bind(styles);
 
 export default function Reactions({ reactions }) {
-  if (reactions.countReact !== 0)
+  if (reactions.length !== 0)
     return (
       <div className={cx('reacts-wrapper')}>
         <div className={cx('reacts-group')}>

@@ -100,6 +100,10 @@
   border-top-left-radius: 4px;
   border-bottom-left-radius: 18px;
 }
+.only {
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
+}
 
 .reacts-wrapper {
   right: 0;
@@ -172,6 +176,10 @@
   }
 
   .last {
+    border-bottom-right-radius: 18px;
+  }
+  .only {
+    border-top-right-radius: 18px;
     border-bottom-right-radius: 18px;
   }
 }

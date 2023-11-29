@@ -7,14 +7,14 @@ import Tippy from '@tippyjs/react/headless';
 
 const cx = classNames.bind(styles);
 
-export default function MessageItem({ myself = false, contents = [] }) {
+export default function MessageItem({ myself = false, messages = [] }) {
   const renderContent = () => {
-    return contents.map((item, index) => {
-      const first = index === 0;
-      const last = index === contents.length - 1;
-
+    return messages.map((item, index) => {
+      var first = index === 0 && messages.length !== 1;
+      var last = index === messages.length - 1 && messages.length !== 1;
+      var only = messages.length === 1;
       return (
-        <div key={index} className={cx('mess-wrap')}>
+        <div key={item.messageId} className={cx('mess-wrap')}>
           <Tippy
             hideOnClick
             placement="right"
@@ -25,8 +25,8 @@ export default function MessageItem({ myself = false, contents = [] }) {
               return <Actions />;
             }}
           >
-            <div className={cx('mess-container', { first, last })}>
-              <span className={cx('mess-content')}>{item.text}</span>
+            <div className={cx('mess-container', { first, last, only })}>
+              <span className={cx('mess-content')}>{item.content}</span>
             </div>
           </Tippy>
           {/* // reactions of users */}
@@ -38,7 +38,7 @@ export default function MessageItem({ myself = false, contents = [] }) {
     });
   };
 
-  const multi = contents.length > 0;
+  const multi = messages.length > 0;
 
   return (
     <div
