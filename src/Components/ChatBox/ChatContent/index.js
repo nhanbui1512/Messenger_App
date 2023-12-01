@@ -8,11 +8,10 @@ const cx = classNames.bind(styles);
 
 export default function ChatContent({ data }) {
   const wrapperRef = useRef(null);
-
   const renderMessages = () => {
-    return data?.map((item) => {
+    return data?.map((item, index) => {
       return (
-        <div key={item.id}>
+        <div key={index}>
           <TimeBar>{item.createAtStr}</TimeBar>
           <MessageItem messages={item.messages} myself={item.myself} />
         </div>

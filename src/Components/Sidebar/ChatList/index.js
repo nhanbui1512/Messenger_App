@@ -34,18 +34,6 @@ export default function ChatList({ children }) {
         <ChatItem name={'Trọng Tuấn'} />
         <ChatItem />
         <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
-        <ChatItem />
       </div>
 
       <div className={cx('footer')}>

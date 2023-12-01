@@ -34,45 +34,63 @@ export default function Footer({ setMessages }) {
     // mount message into DOM
     if (valueChat.trim() !== '') {
       const moment = new Date();
-
       const hours = moment.getHours();
       const minutes = String(moment.getMinutes()).padStart(2, '0');
-      const timeStr = `${hours}:${minutes}`;
+      const timeStr = `${hours}:${minutes} ${moment.getDate()}/${
+        moment.getMonth() + 1
+      }/${moment.getFullYear()}`;
 
       setMessages((prevState) => {
         const lastMessage = prevState[prevState.length - 1];
+        const createAt = new Date(lastMessage.createAt);
+        const minutesSpace = Math.floor((moment - createAt) / (60 * 1000));
 
-        if (!lastMessage.myself || lastMessage.time !== timeStr) {
-          const newMessage = [
-            ...prevState,
-            {
-              time: timeStr,
-              contents: [
-                {
-                  text: valueChat,
-                  reactions: {
-                    data: [],
-                    countReact: 0,
-                  },
-                },
-              ],
-              myself: true,
-            },
-          ];
-          return newMessage;
+        // nếu nhóm tin nhắn cuối cùng là ko phải là mình gửi hoặc k/cách thời gian là trên 1 phút
+        if (!lastMessage.myself || minutesSpace > 1) {
+          // tạo ra 1 nhóm tin nhắn và thêm 1 tin nhắn vào trong
+          const newgroupMessage = {
+            createAtStr: '23:52 29/11/2023',
+            id: 23, // fixed data, cần phải sửa khi call API
+            createAt: moment.toISOString(),
+            userUserId: 3,
+            roomchatRoomId: 1,
+            messages: [
+              {
+                createTimeStr: timeStr,
+                last: '1 ngày',
+                messageId: 54,
+                content: valueChat,
+                createAt: moment.toISOString(),
+                deleteAt: null,
+                userUserId: 1,
+                roomchatRoomId: 1,
+                messagegroupId: 23,
+                reactions: [],
+              },
+            ],
+            myself: true,
+          };
+
+          return [...prevState, newgroupMessage]; // thêm nhóm tin nhắn vào cuối cùng của state
         } else if (lastMessage.myself) {
+          // nếu nhóm tin nhắn là do mình gửi
           const newState = [...prevState];
-          newState[newState.length - 1].contents.push({
-            text: valueChat,
-            reactions: {
-              data: [],
-              countReact: 0,
-            },
-          });
+
+          const newMessage = {
+            createTimeStr: timeStr,
+            last: '1 ngày',
+            messageId: 54,
+            content: valueChat,
+            createAt: moment.toISOString(),
+            deleteAt: null,
+            userUserId: 1,
+            roomchatRoomId: 1,
+            messagegroupId: 23,
+            reactions: [],
+          };
+          newState[newState.length - 1].messages.push(newMessage); // thêm tin nhắn vào nhóm tin nhắn cuối cùng
           return newState;
         }
-
-        return prevState;
       });
     }
 
@@ -178,7 +196,7 @@ export default function Footer({ setMessages }) {
             <div>
               <CircleButton
                 onClick={() => {
-                  // handleSendMessage();
+                  handleSendMessage();
                 }}
                 transparent
                 icon={<Send />}

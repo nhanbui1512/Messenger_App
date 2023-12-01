@@ -14,7 +14,7 @@ export default function MessageItem({ myself = false, messages = [] }) {
       var last = index === messages.length - 1 && messages.length !== 1;
       var only = messages.length === 1;
       return (
-        <div key={item.messageId} className={cx('mess-wrap')}>
+        <div key={index} className={cx('mess-wrap')}>
           <Tippy
             hideOnClick
             placement="right"
