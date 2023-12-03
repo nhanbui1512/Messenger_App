@@ -29,7 +29,6 @@ function Navigation() {
     {
       icon: <UsersIcon />,
       title: 'Mọi người',
-      isActive: false,
       to: '/active',
     },
 

@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './ChatItem.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import CircleImage from '../../CircleImage';
 import CircleButton from '../../CircleButton';
 import {
@@ -20,9 +20,10 @@ import Tippy from '@tippyjs/react/headless';
 import PopperItem from '../../Popper/PopperItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
-export default function ChatItem({ name, newMess = false }) {
+export default function ChatItem({ name, newMess = false, data = {} }) {
   const items = [
     {
       title: 'Đánh dấu là chưa đọc',
@@ -63,9 +64,13 @@ export default function ChatItem({ name, newMess = false }) {
       icon: <ExclamationMark width={24} height={24} />,
     },
   ];
+
   return (
     <div className={cx('div-box', 'pd_0_6')}>
-      <Link className={cx('wrapper')}>
+      <NavLink
+        to={`/room/${data.roomId}`}
+        className={(nav) => cx('wrapper', { active: nav.isActive })}
+      >
         <div style={{ width: '100%' }} className={['pd_10']}>
           <div style={{ width: '100%' }} className={cx('container')}>
             <div className={cx('avatar')}>
@@ -76,8 +81,14 @@ export default function ChatItem({ name, newMess = false }) {
 
               {newMess || (
                 <div className={cx('info')}>
-                  <span className={cx('message')}>Bạn : Ời ời</span>
-                  <span className={cx('time')}>. 2 giờ</span>
+                  <div className={cx('message-container')}>
+                    <span
+                      className={cx('message')}
+                    >{`${data.messages[0].userName}: ${data.messages[0].content}`}</span>
+                  </div>
+                  <div className={cx('time-container')}>
+                    <span className={cx('time')}>{`. ${data.messages[0].last}`}</span>
+                  </div>
                 </div>
               )}
             </div>
@@ -98,7 +109,7 @@ export default function ChatItem({ name, newMess = false }) {
             </div>
           </div>
         </div>
-      </Link>
+      </NavLink>
 
       <Tippy
         appendTo={document.body}

@@ -20,7 +20,7 @@ export default function Actions() {
   const [emotions, setEmotions] = useState(false);
   const [menu, setMenu] = useState(false);
 
-  const items = [
+  const menuItems = [
     {
       title: 'Xóa, gỡ',
     },
@@ -31,6 +31,87 @@ export default function Actions() {
       title: 'Ghim',
     },
   ];
+
+  const [emotionItems, setemotionItems] = useState([
+    {
+      id: 0,
+      title: 'heart',
+      icon: reactsImage.heart,
+      isActive: false,
+    },
+    {
+      id: 1,
+      title: 'laugh',
+      icon: reactsImage.laugh,
+      isActive: false,
+    },
+    {
+      id: 2,
+      title: 'wow',
+      icon: reactsImage.wow,
+      isActive: true,
+    },
+    {
+      id: 4,
+      title: 'sad',
+      icon: reactsImage.sad,
+      isActive: false,
+    },
+
+    {
+      id: 6,
+      title: 'angry',
+      icon: reactsImage.angry,
+      isActive: false,
+    },
+    {
+      id: 7,
+      title: 'like',
+      icon: reactsImage.like,
+      isActive: false,
+    },
+  ]);
+
+  const handleReact = (emotionId) => {
+    var prevState = [...emotionItems];
+
+    for (let i = 0; i < prevState.length; i++) {
+      if (prevState[i].id !== emotionId && prevState[i].isActive) {
+        prevState[i].isActive = false;
+      }
+
+      if (prevState[i].id === emotionId) {
+        if (prevState[i].isActive) {
+          prevState[i].isActive = false;
+        } else {
+          prevState[i].isActive = true;
+        }
+      }
+    }
+
+    console.log(' hello world ');
+    setemotionItems(prevState);
+  };
+
+  const renderEmotions = () => {
+    return (
+      <>
+        {emotionItems.map((emotion) => {
+          return (
+            <div
+              onClick={() => {
+                handleReact(emotion.id);
+              }}
+              key={emotion.id}
+              className={cx('emotion-btn', { active: emotion.isActive })}
+            >
+              <Image src={emotion.icon} />
+            </div>
+          );
+        })}
+      </>
+    );
+  };
   return (
     <div className={cx('action_wrapper')}>
       <Tippy zIndex={98} content="Bày tỏ cảm xúc">
@@ -52,27 +133,7 @@ export default function Actions() {
                 }}
                 className={cx('emotion-wrapper')}
               >
-                <div className={cx('emotion-btn')}>
-                  <Image src={reactsImage.heart} />
-                </div>
-
-                <div className={cx('emotion-btn')}>
-                  <Image src={reactsImage.laugh} />
-                </div>
-
-                <div className={cx('emotion-btn', { active: true })}>
-                  <Image src={reactsImage.wow} />
-                </div>
-
-                <div className={cx('emotion-btn')}>
-                  <Image src={reactsImage.sad} />
-                </div>
-                <div className={cx('emotion-btn')}>
-                  <Image src={reactsImage.angry} />
-                </div>
-                <div className={cx('emotion-btn')}>
-                  <Image src={reactsImage.like} />
-                </div>
+                {renderEmotions()}
               </div>
             )}
           >
@@ -113,7 +174,7 @@ export default function Actions() {
                 arrow={false}
                 className={cx('expand-menu')}
               >
-                {items.map((item, index) => {
+                {menuItems.map((item, index) => {
                   return <PopperItem key={index} className={cx('menu-item')} data={item} />;
                 })}
               </PopperWrapper>
