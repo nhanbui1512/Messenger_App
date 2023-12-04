@@ -16,7 +16,7 @@ import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
-export default function Actions() {
+export default function Actions({ message, setMessages }) {
   const [emotions, setEmotions] = useState(false);
   const [menu, setMenu] = useState(false);
 
@@ -49,7 +49,7 @@ export default function Actions() {
       id: 2,
       title: 'wow',
       icon: reactsImage.wow,
-      isActive: true,
+      isActive: false,
     },
     {
       id: 4,
@@ -72,24 +72,23 @@ export default function Actions() {
     },
   ]);
 
-  const handleReact = (emotionId) => {
+  const handleReact = (emotion) => {
     var prevState = [...emotionItems];
 
     for (let i = 0; i < prevState.length; i++) {
-      if (prevState[i].id !== emotionId && prevState[i].isActive) {
+      if (prevState[i].id !== emotion.id && prevState[i].isActive) {
         prevState[i].isActive = false;
       }
 
-      if (prevState[i].id === emotionId) {
+      if (prevState[i].id === emotion.id) {
         if (prevState[i].isActive) {
           prevState[i].isActive = false;
         } else {
           prevState[i].isActive = true;
+          createNewReact(emotion);
         }
       }
     }
-
-    console.log(' hello world ');
     setemotionItems(prevState);
   };
 
@@ -100,7 +99,7 @@ export default function Actions() {
           return (
             <div
               onClick={() => {
-                handleReact(emotion.id);
+                handleReact(emotion);
               }}
               key={emotion.id}
               className={cx('emotion-btn', { active: emotion.isActive })}
@@ -112,6 +111,31 @@ export default function Actions() {
       </>
     );
   };
+
+  // create new react if not existed
+  const createNewReact = (emotion) => {
+    setMessages((prev) => {
+      var prevState = [...prev];
+      prevState.map((group) => {
+        if (group.id === message.messagegroupId) {
+          for (let i = 0; i < group.messages.length; i++) {
+            if (group.messages[i].messageId === message.messageId) {
+              if (group.messages[i].reactions.data) {
+                group.messages[i].reactions.data.push(emotion);
+                group.messages[i].reactions.countReact++;
+              } else {
+                group.messages[i].reactions.data = [emotion];
+                group.messages[i].reactions.countReact = 1;
+              }
+            }
+          }
+        }
+        return group;
+      });
+      return prevState;
+    });
+  };
+
   return (
     <div className={cx('action_wrapper')}>
       <Tippy zIndex={98} content="Bày tỏ cảm xúc">

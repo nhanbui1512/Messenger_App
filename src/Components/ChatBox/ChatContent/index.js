@@ -1,19 +1,19 @@
 import classNames from 'classnames/bind';
 import styles from './ChatContent.module.scss';
 import TimeBar from '../TimeBar';
-import MessageItem from '../MessageItem';
+import MessagesGroup from '../MessagesGroup';
 import { useEffect, useRef } from 'react';
 
 const cx = classNames.bind(styles);
 
-export default function ChatContent({ data }) {
+export default function ChatContent({ data, setMessages }) {
   const wrapperRef = useRef(null);
   const renderMessages = () => {
     return data?.map((item, index) => {
       return (
         <div key={index}>
           <TimeBar>{item.createAtStr}</TimeBar>
-          <MessageItem messages={item.messages} myself={item.myself} />
+          <MessagesGroup messages={item.messages} myself={item.myself} setMessages={setMessages} />
         </div>
       );
     });

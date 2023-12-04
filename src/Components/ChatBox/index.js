@@ -5,7 +5,7 @@ import ChatContent from './ChatContent';
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import reactsImage from '../../assests/images/reactions';
 const cx = classNames.bind(styles);
 
 function ChatBox() {
@@ -34,7 +34,7 @@ function ChatBox() {
           userUserId: 1,
           roomchatRoomId: 1,
           messagegroupId: 23,
-          reactions: [],
+          reactions: {},
         },
       ],
       myself: false,
@@ -63,7 +63,7 @@ function ChatBox() {
           userUserId: 1,
           roomchatRoomId: 1,
           messagegroupId: 21,
-          reactions: [],
+          reactions: {},
         },
       ],
       myself: true,
@@ -92,7 +92,15 @@ function ChatBox() {
           userUserId: 1,
           roomchatRoomId: 1,
           messagegroupId: 19,
-          reactions: [],
+          reactions: {
+            countReact: 1,
+            data: [
+              {
+                title: 'laugh',
+                icon: reactsImage.laugh,
+              },
+            ],
+          },
         },
         {
           createTimeStr: '21:50 29/11/2023',
@@ -104,7 +112,7 @@ function ChatBox() {
           userUserId: 1,
           roomchatRoomId: 1,
           messagegroupId: 19,
-          reactions: [],
+          reactions: {},
         },
       ],
       myself: true,
@@ -129,7 +137,7 @@ function ChatBox() {
         <Header />
       </div>
       <div className={cx('content')}>
-        <ChatContent data={messages} />
+        <ChatContent data={messages} setMessages={setMessages} />
       </div>
       <div className={cx('footer')}>
         <Footer setMessages={setMessages} />

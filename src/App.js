@@ -6,7 +6,7 @@ import { DefaultLayout } from './Layouts';
 function App() {
   return (
     <GlobalStyles>
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <div className={`App`}>
           <Routes>
             <Route

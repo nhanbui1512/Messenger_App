@@ -7,7 +7,7 @@ import Tippy from '@tippyjs/react/headless';
 
 const cx = classNames.bind(styles);
 
-export default function MessageItem({ myself = false, messages = [] }) {
+export default function MessagesGroup({ myself = false, messages = [], setMessages }) {
   const renderContent = () => {
     return messages.map((item, index) => {
       var first = index === 0 && messages.length !== 1;
@@ -22,7 +22,7 @@ export default function MessageItem({ myself = false, messages = [] }) {
             delay={[0, 300]}
             appendTo={'parent'}
             render={(atrs) => {
-              return <Actions />;
+              return <Actions message={item} setMessages={setMessages} />;
             }}
           >
             <div className={cx('mess-container', { first, last, only })}>
@@ -31,7 +31,7 @@ export default function MessageItem({ myself = false, messages = [] }) {
           </Tippy>
           {/* // reactions of users */}
           <div>
-            <Reactions reactions={item.reactions} />
+            <Reactions reactions={item.reactions.data} count={item.reactions.countReact} />
           </div>
         </div>
       );

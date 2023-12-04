@@ -4,12 +4,12 @@ import Image from '../../Image';
 
 const cx = classNames.bind(styles);
 
-export default function Reactions({ reactions }) {
+export default function Reactions({ reactions = [], count = 0 }) {
   if (reactions.length !== 0)
     return (
       <div className={cx('reacts-wrapper')}>
         <div className={cx('reacts-group')}>
-          {reactions.data.map((react, index) => {
+          {reactions.map((react, index) => {
             return (
               <div key={index} className={cx('react-btn')}>
                 <Image src={react.icon}></Image>
@@ -17,7 +17,7 @@ export default function Reactions({ reactions }) {
             );
           })}
           <div className={cx('count')}>
-            <span>{reactions.countReact}</span>
+            <span>{count}</span>
           </div>
         </div>
       </div>
