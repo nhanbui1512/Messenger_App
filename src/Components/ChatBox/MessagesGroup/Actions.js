@@ -72,26 +72,6 @@ export default function Actions({ message, setMessages }) {
     },
   ]);
 
-  const handleReact = (emotion) => {
-    var prevState = [...emotionItems];
-
-    for (let i = 0; i < prevState.length; i++) {
-      if (prevState[i].id !== emotion.id && prevState[i].isActive) {
-        prevState[i].isActive = false;
-      }
-
-      if (prevState[i].id === emotion.id) {
-        if (prevState[i].isActive) {
-          prevState[i].isActive = false;
-        } else {
-          prevState[i].isActive = true;
-          createNewReact(emotion);
-        }
-      }
-    }
-    setemotionItems(prevState);
-  };
-
   const renderEmotions = () => {
     return (
       <>
@@ -112,29 +92,87 @@ export default function Actions({ message, setMessages }) {
     );
   };
 
-  // create new react if not existed
   const createNewReact = (emotion) => {
     setMessages((prev) => {
-      var prevState = [...prev];
-      prevState.map((group) => {
+      var groups = [...prev];
+      for (let group of groups) {
         if (group.id === message.messagegroupId) {
-          for (let i = 0; i < group.messages.length; i++) {
-            if (group.messages[i].messageId === message.messageId) {
-              if (group.messages[i].reactions.data) {
-                group.messages[i].reactions.data.push(emotion);
-                group.messages[i].reactions.countReact++;
+          for (let msg of group.messages) {
+            if (msg.messageId === message.messageId) {
+              // thêm 1 react mới vào reations của message
+              const isExist = msg.reactions.data.find((item) => item.title === emotion.title);
+              if (!isExist) {
+                msg.reactions.data.push({ title: emotion.title, count: 1 });
               } else {
-                group.messages[i].reactions.data = [emotion];
-                group.messages[i].reactions.countReact = 1;
+                for (let react of msg.reactions.data) {
+                  if (react.title === emotion.title) react.count++;
+                }
               }
+
+              msg.reactions.countReact++;
+              break;
             }
           }
+          break;
         }
-        return group;
-      });
-      return prevState;
+      }
+      return groups;
     });
   };
+
+  const deleteReact = (emotion) => {
+    setMessages((prev) => {
+      var groups = [...prev];
+      for (let group of groups) {
+        if (group.id === message.messagegroupId) {
+          for (let msg of group.messages) {
+            if (msg.messageId === message.messageId) {
+              msg.reactions.data = msg.reactions.data.filter((react) => {
+                if (react.title === emotion.title) {
+                  react.count--;
+                }
+                return react.count > 0;
+              });
+
+              msg.reactions.countReact--;
+
+              break;
+            }
+          }
+          break;
+        }
+      }
+      console.clear();
+      console.log(groups);
+      return groups;
+    });
+  };
+
+  const handleReact = (emotion) => {
+    var emotions = [...emotionItems];
+
+    for (let i = 0; i < emotions.length; i++) {
+      // tắt tât cả các active cũ của emotion btn
+      if (emotions[i].id !== emotion.id && emotions[i].isActive) {
+        emotions[i].isActive = false;
+      }
+
+      if (emotions[i].id === emotion.id) {
+        if (emotions[i].isActive) {
+          // nếu đang thả react
+          emotions[i].isActive = false;
+          deleteReact(emotion);
+        } else {
+          // nếu chưa thả react
+          emotions[i].isActive = true;
+          createNewReact(emotion);
+        }
+      }
+    }
+    setemotionItems(emotions);
+  };
+
+  // create new react if not existed
 
   return (
     <div className={cx('action_wrapper')}>

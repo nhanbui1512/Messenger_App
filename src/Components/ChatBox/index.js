@@ -5,7 +5,6 @@ import ChatContent from './ChatContent';
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import reactsImage from '../../assests/images/reactions';
 const cx = classNames.bind(styles);
 
 function ChatBox() {
@@ -34,7 +33,10 @@ function ChatBox() {
           userUserId: 1,
           roomchatRoomId: 1,
           messagegroupId: 23,
-          reactions: {},
+          reactions: {
+            data: [],
+            countReact: 0,
+          },
         },
       ],
       myself: false,
@@ -63,7 +65,10 @@ function ChatBox() {
           userUserId: 1,
           roomchatRoomId: 1,
           messagegroupId: 21,
-          reactions: {},
+          reactions: {
+            data: [],
+            countReact: 0,
+          },
         },
       ],
       myself: true,
@@ -93,11 +98,15 @@ function ChatBox() {
           roomchatRoomId: 1,
           messagegroupId: 19,
           reactions: {
-            countReact: 1,
+            countReact: 2,
             data: [
               {
+                count: 1,
                 title: 'laugh',
-                icon: reactsImage.laugh,
+              },
+              {
+                count: 1,
+                title: 'sad',
               },
             ],
           },
@@ -112,7 +121,10 @@ function ChatBox() {
           userUserId: 1,
           roomchatRoomId: 1,
           messagegroupId: 19,
-          reactions: {},
+          reactions: {
+            data: [],
+            countReact: 0,
+          },
         },
       ],
       myself: true,

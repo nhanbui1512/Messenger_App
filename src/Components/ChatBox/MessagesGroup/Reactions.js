@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './MessageItem.module.scss';
 import Image from '../../Image';
+import reactionsConst from '../../../Constants/reactions';
 
 const cx = classNames.bind(styles);
 
@@ -12,7 +13,7 @@ export default function Reactions({ reactions = [], count = 0 }) {
           {reactions.map((react, index) => {
             return (
               <div key={index} className={cx('react-btn')}>
-                <Image src={react.icon}></Image>
+                <Image src={reactionsConst.get(react.title).icon}></Image>
               </div>
             );
           })}

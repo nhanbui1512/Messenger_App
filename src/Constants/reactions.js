@@ -29,6 +29,12 @@ const sad = {
   title: 'sad',
 };
 
-const reactions = [heart, laugh, wow, sad, angry, like];
+const reactions = new Map();
+reactions.set('heart', heart);
+reactions.set('laugh', laugh);
+reactions.set('wow', wow);
+reactions.set('sad', sad);
+reactions.set('angry', angry);
+reactions.set('like', like);
 
 export default reactions;
