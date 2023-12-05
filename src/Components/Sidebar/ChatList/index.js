@@ -16,7 +16,9 @@ export default function ChatList({ children }) {
   useEffect(() => {
     getAllRoom()
       .then((res) => {
-        setRooms(res.data);
+        if (res.result === true) {
+          setRooms(res.data);
+        }
       })
       .catch((err) => {
         console.log(err);

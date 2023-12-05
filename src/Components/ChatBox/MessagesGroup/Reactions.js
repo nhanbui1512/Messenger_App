@@ -5,7 +5,12 @@ import reactionsConst from '../../../Constants/reactions';
 
 const cx = classNames.bind(styles);
 
-export default function Reactions({ reactions = [], count = 0 }) {
+export default function Reactions({ reactions = [] }) {
+  let count = 0;
+  for (let react of reactions) {
+    count += react.users.length;
+  }
+
   if (reactions.length !== 0)
     return (
       <div className={cx('reacts-wrapper')}>

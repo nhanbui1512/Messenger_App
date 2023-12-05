@@ -99,17 +99,28 @@ export default function Actions({ message, setMessages }) {
         if (group.id === message.messagegroupId) {
           for (let msg of group.messages) {
             if (msg.messageId === message.messageId) {
-              // thêm 1 react mới vào reations của message
               const isExist = msg.reactions.data.find((item) => item.title === emotion.title);
-              if (!isExist) {
-                msg.reactions.data.push({ title: emotion.title, count: 1 });
+
+              if (isExist) {
+                for (let react of msg.reactions.data) {
+                  react.users = react.users.filter((user) => user !== 1);
+
+                  if (react.title === emotion.title) {
+                    react.users.push(1);
+                  }
+                }
+
+                msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
               } else {
                 for (let react of msg.reactions.data) {
-                  if (react.title === emotion.title) react.count++;
+                  react.users = react.users.filter((user) => user !== 1);
                 }
+                msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
+                msg.reactions.data.push({
+                  title: emotion.title,
+                  users: [1],
+                });
               }
-
-              msg.reactions.countReact++;
               break;
             }
           }
@@ -127,14 +138,13 @@ export default function Actions({ message, setMessages }) {
         if (group.id === message.messagegroupId) {
           for (let msg of group.messages) {
             if (msg.messageId === message.messageId) {
-              msg.reactions.data = msg.reactions.data.filter((react) => {
+              for (let react of msg.reactions.data) {
                 if (react.title === emotion.title) {
-                  react.count--;
+                  react.users = react.users.filter((user) => user !== 1);
                 }
-                return react.count > 0;
-              });
+              }
 
-              msg.reactions.countReact--;
+              msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
 
               break;
             }

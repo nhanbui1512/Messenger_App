@@ -20,7 +20,6 @@ import Tippy from '@tippyjs/react/headless';
 import PopperItem from '../../Popper/PopperItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 export default function ChatItem({ name, newMess = false, data = {} }) {

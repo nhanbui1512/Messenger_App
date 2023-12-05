@@ -99,15 +99,14 @@ function ChatBox() {
           roomchatRoomId: 1,
           messagegroupId: 19,
           reactions: {
-            countReact: 2,
             data: [
               {
-                count: 1,
                 title: 'laugh',
+                users: [4],
               },
               {
-                count: 1,
                 title: 'sad',
+                users: [2, 3],
               },
             ],
           },
@@ -124,7 +123,6 @@ function ChatBox() {
           messagegroupId: 19,
           reactions: {
             data: [],
-            countReact: 0,
           },
         },
       ],
@@ -134,9 +132,9 @@ function ChatBox() {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.0.101:3000/message/get-by-room?roomid=1&page=1&per_page=5`, {
+      .get(`http://localhost:3000/message/get-by-room?roomid=1&page=1&per_page=5`, {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJOYW1lIjoibmhhbmJ1aTE1MTIiLCJlbWFpbCI6Im5oYW5iMTlAZ21haWwuY29tIiwiaWF0IjoxNzAxMjI3NDIxLCJleHAiOjE3MDM4MTk0MjF9.MX1kxk7CiNB8nki-GMB1oSJTY0YzX0KTUqYHUhRA4N4`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJOYW1lIjoibmhhbmJ1aTE1MTIiLCJlbWFpbCI6Im5oYW5iMTlAZ21haWwuY29tIiwiaWF0IjoxNzAxNzcxODM2LCJleHAiOjE3MDQzNjM4MzZ9.ZpRkIIAbYMvZurdOSPiw33r6UjJEZhZXW3lRL_m17rY`,
         },
       })
       .then((res) => {
