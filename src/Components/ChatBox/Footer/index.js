@@ -8,12 +8,17 @@ import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale-subtle.css';
 import Tippy from '@tippyjs/react';
 import EmojiPicker from 'emoji-picker-react';
+
+import { createNewMessage } from '../../../Services/message';
+import { useParams } from 'react-router-dom';
+
 const cx = classNames.bind(styles);
 
 export default function Footer({ setMessages }) {
   const [valueChat, setValueChat] = useState('');
   const [scale, setScale] = useState(false);
   const [emoji, setEmoji] = useState(false);
+  const { roomid } = useParams();
 
   const handleInput = (e) => {
     setValueChat(e.target.value);
@@ -39,6 +44,14 @@ export default function Footer({ setMessages }) {
       const timeStr = `${hours}:${minutes} ${moment.getDate()}/${
         moment.getMonth() + 1
       }/${moment.getFullYear()}`;
+
+      createNewMessage({ content: valueChat, roomId: roomid })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
       setMessages((prevState) => {
         const lastMessage = prevState[prevState.length - 1];

@@ -142,8 +142,6 @@ export default function Actions({ message, setMessages }) {
           break;
         }
       }
-      console.clear();
-      console.log(groups);
       return groups;
     });
   };

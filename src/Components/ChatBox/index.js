@@ -5,6 +5,7 @@ import ChatContent from './ChatContent';
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Route, Routes } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function ChatBox() {
@@ -145,15 +146,25 @@ function ChatBox() {
   }, []);
   return (
     <div className={cx('wrapper')}>
-      <div className={cx('header')}>
-        <Header />
-      </div>
-      <div className={cx('content')}>
-        <ChatContent data={messages} setMessages={setMessages} />
-      </div>
-      <div className={cx('footer')}>
-        <Footer setMessages={setMessages} />
-      </div>
+      <Routes>
+        <Route
+          path="/room/:roomid"
+          element={
+            <>
+              <div className={cx('header')}>
+                <Header />
+              </div>
+
+              <div className={cx('content')}>
+                <ChatContent data={messages} setMessages={setMessages} />
+              </div>
+              <div className={cx('footer')}>
+                <Footer setMessages={setMessages} />
+              </div>
+            </>
+          }
+        ></Route>
+      </Routes>
     </div>
   );
 }
