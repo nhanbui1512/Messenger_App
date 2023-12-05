@@ -1,8 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './ChatItem.module.scss';
-import globalStyles from '../../GlobalStyles/GlobalStyles.module.scss';
-import { Link } from 'react-router-dom';
-import Image from '../../Image';
+import { Link, NavLink } from 'react-router-dom';
+import CircleImage from '../../CircleImage';
 import CircleButton from '../../CircleButton';
 import {
   Bell,
@@ -19,10 +18,12 @@ import {
 import PopperWrapper from '../../Popper/PopperWrapper';
 import Tippy from '@tippyjs/react/headless';
 import PopperItem from '../../Popper/PopperItem';
-import { GreenDot } from '../../GreenDot';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
-export default function ChatItem({ isGroup = false, children = 'Người dùng' }) {
+export default function ChatItem({ name, newMess = false, data = {} }) {
   const items = [
     {
       title: 'Đánh dấu là chưa đọc',
@@ -64,52 +65,51 @@ export default function ChatItem({ isGroup = false, children = 'Người dùng' 
     },
   ];
 
-  function renderAvatar() {
-    return isGroup ? (
-      <div className={cx('avatar')}>
-        <div className={cx('avatar-container')}>
-          <Image className={cx('avatar-group')} />
-          <Image className={cx('avatar-group', { last: true })} />
-          <GreenDot className={cx('greendot')} />
-        </div>
-      </div>
-    ) : (
-      <div className={cx('avatar')}>
-        <div className={cx('avatar-container')}>
-          <Image />
-          <GreenDot className={cx('greendot')} />
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className={cx('div-box', globalStyles.pd_0_6)}>
-      <Link className={cx('wrapper')}>
-        <div style={{ width: '100%' }} className={[globalStyles.pd_10]}>
+    <div className={cx('div-box', 'pd_0_6')}>
+      <NavLink
+        to={`/room/${data.roomId}`}
+        className={(nav) => cx('wrapper', { active: nav.isActive })}
+      >
+        <div style={{ width: '100%' }} className={['pd_10']}>
           <div style={{ width: '100%' }} className={cx('container')}>
-            {/* render avatar tùy theo chat với người dùng hoặc chat nhóm  */}
-            {renderAvatar()}
+            <div className={cx('avatar')}>
+              <CircleImage />
+            </div>
             <div className={cx('info-container')}>
-              <span className={cx('chat-name')}>{children}</span>
-              <div></div>
-              <div className={cx('info')}>
-                <span className={cx('message')}>Bạn : Ời ời</span>
-                <span className={cx('time')}>. 2 giờ</span>
-              </div>
+              <span className={cx('chat-name')}>{name || 'Nhân Bùi'}</span>
+
+              {newMess || (
+                <div className={cx('info')}>
+                  <div className={cx('message-container')}>
+                    <span
+                      className={cx('message')}
+                    >{`${data.messages[0].userName}: ${data.messages[0].content}`}</span>
+                  </div>
+                  <div className={cx('time-container')}>
+                    <span className={cx('time')}>{`. ${data.messages[0].last}`}</span>
+                  </div>
+                </div>
+              )}
             </div>
             <div className={cx('status-container')}>
-              <div className={cx('seen')}>
-                <img
-                  className={cx('avatar-seen')}
-                  alt=""
-                  src="https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=dst-png_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=M5xBkqsrW0IAX8B7Q47&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfCER-NLrjGTjrrNnaCICl2bC8FHJs1ci9cEk0sV4roDoQ&oe=65716C78"
-                />
-              </div>
+              {newMess ? (
+                <Link to={'/'} className={cx('cancle')}>
+                  <FontAwesomeIcon className={cx('xmark-icon')} icon={faXmark} />
+                </Link>
+              ) : (
+                <div className={cx('seen')}>
+                  <img
+                    className={cx('avatar-seen')}
+                    alt=""
+                    src="https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=dst-png_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=M5xBkqsrW0IAX8B7Q47&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfCER-NLrjGTjrrNnaCICl2bC8FHJs1ci9cEk0sV4roDoQ&oe=65716C78"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
-      </Link>
+      </NavLink>
 
       <Tippy
         appendTo={document.body}
@@ -125,9 +125,7 @@ export default function ChatItem({ isGroup = false, children = 'Người dùng' 
           </PopperWrapper>
         )}
       >
-        <div>
-          <CircleButton className={cx('more-btn')} icon={<ElipseIcon />} />
-        </div>
+        <div>{newMess || <CircleButton className={cx('more-btn')} icon={<ElipseIcon />} />}</div>
       </Tippy>
     </div>
   );

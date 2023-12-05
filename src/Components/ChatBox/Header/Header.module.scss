@@ -1,73 +1,73 @@
 .container {
-    width: 100%;
-    max-height: 56px;
-    display: flex;
-    padding: 10px 8px;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-height: 56px;
+  display: flex;
+  padding: 10px 8px;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
 }
-.information{
-    cursor: pointer;
+.information {
+  cursor: pointer;
 }
 
 .user {
-    border-radius: 4px;
-    // background-color: #F0F2F5;
-    display: flex;
+  border-radius: 4px;
+  // background-color: #F0F2F5;
+  display: flex;
 }
 .information:hover {
-    .user{
-        background-color: #F0F2F5;
-    }
+  .user {
+    background-color: #f0f2f5;
+  }
 }
-.avatar-container{
-    position: relative;
+.avatar-container {
+  position: relative;
 }
 .avatar {
-    width: 48px;
-    height: 48px;
-    padding: 6px;
-    border: none !important;
+  width: 48px;
+  height: 48px;
+  padding: 6px;
+  border: none !important;
 }
-.avatar_greendot{
-    position: absolute;
-    border: 1px solid #fff;
-    bottom: 7px;
-    right: 6px;
-    width: 12px;
-    height: 12px;
+.avatar_greendot {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  border: 1px solid #fff;
+  bottom: 7px;
+  right: 6px;
 }
 .content {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 6px;
-    padding-right: 6px;
-    padding-top: 6px;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 6px;
+  padding-right: 6px;
+  padding-top: 6px;
+  text-align: left;
 }
 
 .user-name {
-    font-size: 15px;
-    color: var(--primary-black);
-    font-weight: 500;
+  font-size: 15px;
+  color: var(--primary-black);
+  font-weight: 500;
 }
 .status {
-    color: #65676b;
-    font-size: 12px;
-    line-height: 14px;
+  color: #65676b;
+  font-size: 12px;
+  line-height: 14px;
 }
 .contact {
-    display: flex;
+  display: flex;
 }
 .cont-btn {
-    margin: 0 6px;
-    position: relative;
+  margin: 0 6px;
+  position: relative;
 }
 .icon {
-    color: var(--primary-blue);
+  color: var(--primary-blue);
 }
-.green_dot{
-    position: absolute;
-    right: 0;
+.green_dot {
+  position: absolute;
+  right: 0;
 }

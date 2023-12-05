@@ -6,25 +6,52 @@ import Search from '../../Search';
 import ChatItem from '../ChatItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { Link, Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getAllRoom } from '../../../Services/roomService';
+
 const cx = classNames.bind(styles);
 
 export default function ChatList({ children }) {
+  useEffect(() => {
+    getAllRoom()
+      .then((res) => {
+        setRooms(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const [rooms, setRooms] = useState([]);
+
+  const renderRoom = () => {
+    return rooms.map((room) => {
+      return <ChatItem key={room.roomId} name={room.roomName} data={room} />;
+    });
+  };
   return (
     <div className={cx('wrapper')}>
       <div className={cx('header')}>
         <div className={cx('title-wrap')}>
           <h1 className={cx('title')}>Chat</h1>
         </div>
-        <div>
+        <Link to={'/new'}>
           <CircleButton icon={<EditIcon />} />
-        </div>
+        </Link>
       </div>
       <div className={cx('search-box')}>
         <Search />
       </div>
       <div className={cx('chat-list')}>
-        <ChatItem isGroup>Tập làm web group</ChatItem>
-        <ChatItem>Nhân Bùi</ChatItem>
+        <Routes>
+          <Route
+            element={<ChatItem newMess name={'Tin nhắn mới'}></ChatItem>}
+            key={1}
+            path="/new"
+          ></Route>
+        </Routes>
+        {renderRoom()}
       </div>
 
       <div className={cx('footer')}>
