@@ -1,44 +1,43 @@
 .wrapper {
-    display: flex;
-    height: 36px;
+  display: flex;
+  height: 36px;
 }
 .container {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 label {
-    background-color: #f0f2f5;
-    border-radius: 50px;
-    width: 100%;
+  background-color: #f0f2f5;
+  border-radius: 50px;
 }
 .search-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 14px;
-    padding-right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 14px;
+  padding-right: 4px;
 
-    .search-icon {
-        fill: #65676b;
-    }
+  .search-icon {
+    fill: #65676b;
+  }
 }
 .search-input {
-    width: 100%;
-    background-color: transparent;
-    font-size: 0.9375rem;
-    height: 36px;
-    color: var(--primary-black);
-    padding-right: 12px;
-    padding-bottom: 4px;
-    padding-top: 4px;
-    padding-left: 2px;
+  width: 100%;
+  background-color: transparent;
+  font-size: 0.9375rem;
+  height: 36px;
+  color: var(--primary-black);
+  padding-right: 12px;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  padding-left: 2px;
 }
 .back-btn {
-    background-color: transparent;
-    margin-right: 4px;
+  background-color: transparent;
+  margin-right: 4px;
 }
 .back-icon {
-    width: 18px;
-    height: 18px;
-    color: #65676b;
+  width: 18px;
+  height: 18px;
+  color: #65676b;
 }

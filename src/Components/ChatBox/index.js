@@ -5,7 +5,7 @@ import ChatContent from './ChatContent';
 import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Route, Routes } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 function ChatBox() {
@@ -129,10 +129,11 @@ function ChatBox() {
       myself: true,
     },
   ]);
+  const { roomid } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/message/get-by-room?roomid=1&page=1&per_page=5`, {
+      .get(`http://localhost:3000/message/get-by-room?roomid=${roomid}&page=1&per_page=5`, {
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJOYW1lIjoibmhhbmJ1aTE1MTIiLCJlbWFpbCI6Im5oYW5iMTlAZ21haWwuY29tIiwiaWF0IjoxNzAxNzcxODM2LCJleHAiOjE3MDQzNjM4MzZ9.ZpRkIIAbYMvZurdOSPiw33r6UjJEZhZXW3lRL_m17rY`,
         },
@@ -141,28 +142,19 @@ function ChatBox() {
         setMessages(res.data.data.reverse());
       })
       .catch((error) => console.log(error.message));
-  }, []);
+  }, [roomid]);
   return (
     <div className={cx('wrapper')}>
-      <Routes>
-        <Route
-          path="/room/:roomid"
-          element={
-            <>
-              <div className={cx('header')}>
-                <Header />
-              </div>
+      <div className={cx('header')}>
+        <Header />
+      </div>
 
-              <div className={cx('content')}>
-                <ChatContent data={messages} setMessages={setMessages} />
-              </div>
-              <div className={cx('footer')}>
-                <Footer setMessages={setMessages} />
-              </div>
-            </>
-          }
-        ></Route>
-      </Routes>
+      <div className={cx('content')}>
+        <ChatContent data={messages} setMessages={setMessages} />
+      </div>
+      <div className={cx('footer')}>
+        <Footer setMessages={setMessages} />
+      </div>
     </div>
   );
 }

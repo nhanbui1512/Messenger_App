@@ -23,7 +23,7 @@ export default function Search() {
             icon={<FontAwesomeIcon className={cx('back-icon')} icon={faArrowLeft} />}
           />
         )}
-        <label className={cx('', ['row'])}>
+        <label style={{ flex: 1 }} className={cx('', ['row'])}>
           <span className={cx('search-btn')}>
             <SearchIcon className={cx('search-icon')} />
           </span>

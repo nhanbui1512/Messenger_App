@@ -13,18 +13,6 @@ import { getAllRoom } from '../../../Services/roomService';
 const cx = classNames.bind(styles);
 
 export default function ChatList({ children }) {
-  useEffect(() => {
-    getAllRoom()
-      .then((res) => {
-        if (res.result === true) {
-          setRooms(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   const [rooms, setRooms] = useState([]);
 
   const renderRoom = () => {
@@ -32,6 +20,18 @@ export default function ChatList({ children }) {
       return <ChatItem key={room.roomId} name={room.roomName} data={room} />;
     });
   };
+
+  useEffect(() => {
+    getAllRoom()
+      .then((res) => {
+        if (res.data) {
+          setRooms(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className={cx('wrapper')}>
       <div className={cx('header')}>
