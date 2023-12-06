@@ -100,22 +100,26 @@ export default function Actions({ message, setMessages }) {
           for (let msg of group.messages) {
             if (msg.messageId === message.messageId) {
               const isExist = msg.reactions.data.find((item) => item.title === emotion.title);
-
+              // nếu đã tồn tại react trùng với react mà người dùng thả
               if (isExist) {
                 for (let react of msg.reactions.data) {
+                  // xóa bỏ lịch sử react cũ của user đi
                   react.users = react.users.filter((user) => user !== 1);
 
-                  if (react.title === emotion.title) {
-                    react.users.push(1);
-                  }
+                  // thêm userId vào react đã tồn tại
+                  if (react.title === emotion.title) react.users.push(1);
                 }
-
+                // loại bỏ những react mà không có user
                 msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
               } else {
                 for (let react of msg.reactions.data) {
+                  // xóa bỏ lịch sử react cũ của user đi
                   react.users = react.users.filter((user) => user !== 1);
                 }
+                // loại bỏ những react mà không có user
                 msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
+
+                // thêm một react mới hoàn toàn vào data
                 msg.reactions.data.push({
                   title: emotion.title,
                   users: [1],
@@ -140,10 +144,11 @@ export default function Actions({ message, setMessages }) {
             if (msg.messageId === message.messageId) {
               for (let react of msg.reactions.data) {
                 if (react.title === emotion.title) {
+                  // tìm đến react mà user đã thả và xóa userId
                   react.users = react.users.filter((user) => user !== 1);
                 }
               }
-
+              // xóa những react nào có số lượng = 0 (trong react mà không có user thì loại bỏ)
               msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
 
               break;
