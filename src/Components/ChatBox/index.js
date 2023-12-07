@@ -129,6 +129,8 @@ function ChatBox() {
       myself: true,
     },
   ]);
+  const [room, setRoom] = useState({});
+
   const { roomid } = useParams();
 
   useEffect(() => {
@@ -139,6 +141,7 @@ function ChatBox() {
         },
       })
       .then((res) => {
+        setRoom(res.data.room);
         setMessages(res.data.data.reverse());
       })
       .catch((error) => console.log(error.message));
@@ -146,7 +149,7 @@ function ChatBox() {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('header')}>
-        <Header />
+        <Header room={room} />
       </div>
 
       <div className={cx('content')}>
