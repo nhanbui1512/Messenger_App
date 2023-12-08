@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalStyles from './Components/GlobalStyles';
 import DashboardPage from './Pages/Dashboard';
 import { DefaultLayout } from './Layouts';
+
 function App() {
   return (
     <GlobalStyles>

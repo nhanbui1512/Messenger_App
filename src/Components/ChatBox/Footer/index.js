@@ -11,6 +11,8 @@ import EmojiPicker from 'emoji-picker-react';
 
 import { createNewMessage } from '../../../Services/message';
 import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { StoreContext } from '../../../store';
 
 const cx = classNames.bind(styles);
 
@@ -35,6 +37,9 @@ export default function Footer({ setMessages }) {
     }
   };
 
+  const context = useContext(StoreContext);
+  const socket = context.socket;
+
   const handleSendMessage = () => {
     // mount message into DOM
     if (valueChat.trim() !== '') {
@@ -45,6 +50,8 @@ export default function Footer({ setMessages }) {
         .catch((err) => {
           console.log(err);
         });
+
+      socket.emit('message', valueChat);
     }
 
     const changeDOM = (result) => {

@@ -6,6 +6,7 @@ import Footer from './Footer';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+
 const cx = classNames.bind(styles);
 
 function ChatBox() {
