@@ -3,13 +3,19 @@ import styles from './ChatBox.module.scss';
 import Header from './Header';
 import ChatContent from './ChatContent';
 import Footer from './Footer';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { StoreContext } from '../../store';
 
 const cx = classNames.bind(styles);
 
 function ChatBox() {
+  const context = useContext(StoreContext);
+  const socket = context.socket;
+  const [room, setRoom] = useState({});
+  const { roomid } = useParams();
+
   const [messages, setMessages] = useState([
     {
       createAtStr: '23:52 29/11/2023',
@@ -130,9 +136,6 @@ function ChatBox() {
       myself: true,
     },
   ]);
-  const [room, setRoom] = useState({});
-
-  const { roomid } = useParams();
 
   useEffect(() => {
     axios
@@ -146,7 +149,13 @@ function ChatBox() {
         setMessages(res.data.data.reverse());
       })
       .catch((error) => console.log(error.message));
-  }, [roomid]);
+
+    socket.emit('joinRoom', { roomid: roomid });
+
+    socket.on('message', (msg) => {
+      console.log(msg);
+    });
+  }, [roomid, socket]);
   return (
     <div className={cx('wrapper')}>
       <div className={cx('header')}>

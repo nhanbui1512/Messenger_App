@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Footer.module.scss';
 import CircleButton from '../../CircleButton';
 import { Emoji, FileIcon, GifIcon, ImageIcon, LikeIcon, PlusIcon, Send } from '../../Icons';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale-subtle.css';
@@ -11,12 +11,14 @@ import EmojiPicker from 'emoji-picker-react';
 
 import { createNewMessage } from '../../../Services/message';
 import { useParams } from 'react-router-dom';
-import { useContext } from 'react';
 import { StoreContext } from '../../../store';
 
 const cx = classNames.bind(styles);
 
 export default function Footer({ setMessages }) {
+  const context = useContext(StoreContext);
+  const socket = context.socket;
+
   const [valueChat, setValueChat] = useState('');
   const [scale, setScale] = useState(false);
   const [emoji, setEmoji] = useState(false);
@@ -37,36 +39,33 @@ export default function Footer({ setMessages }) {
     }
   };
 
-  const context = useContext(StoreContext);
-  const socket = context.socket;
-
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     // mount message into DOM
     if (valueChat.trim() !== '') {
+      socket.emit('message', valueChat);
+
       createNewMessage({ content: valueChat, roomId: roomid })
         .then((res) => {
-          changeDOM(res.data);
+          return res.data;
+        })
+        .then((data) => {
+          changeDOM(data);
         })
         .catch((err) => {
           console.log(err);
         });
-
-      socket.emit('message', valueChat);
     }
 
     const changeDOM = (result) => {
       const moment = new Date();
-
       setMessages((prevState) => {
         const lastMessage = prevState[prevState.length - 1];
         const createAt = new Date(lastMessage.createAt);
         const minutesSpace = Math.floor((moment - createAt) / (60 * 1000));
-
         // nếu nhóm tin nhắn cuối cùng là ko phải là mình gửi hoặc k/cách thời gian là trên 1 phút
-        if (!lastMessage.myself || minutesSpace > 1) {
+        if (!lastMessage.myself || minutesSpace > 2) {
           // tạo ra 1 nhóm tin nhắn và thêm 1 tin nhắn vào trong
           const newgroupMessage = result;
-
           return [...prevState, newgroupMessage]; // thêm nhóm tin nhắn vào cuối cùng của state
         } else if (lastMessage.myself) {
           // nếu nhóm tin nhắn là do mình gửi
@@ -179,13 +178,7 @@ export default function Footer({ setMessages }) {
         ) : (
           <Tippy animation="scale-subtle" content="Nhấn Enter để gửi">
             <div>
-              <CircleButton
-                onClick={() => {
-                  handleSendMessage();
-                }}
-                transparent
-                icon={<Send />}
-              />
+              <CircleButton onClick={handleSendMessage} transparent icon={<Send />} />
             </div>
           </Tippy>
         )}

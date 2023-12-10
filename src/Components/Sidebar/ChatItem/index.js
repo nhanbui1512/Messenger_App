@@ -20,6 +20,7 @@ import Tippy from '@tippyjs/react/headless';
 import PopperItem from '../../Popper/PopperItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import images from '../../../assests/images';
 
 const cx = classNames.bind(styles);
 export default function ChatItem({ name, newMess = false, data = {} }) {
@@ -98,11 +99,7 @@ export default function ChatItem({ name, newMess = false, data = {} }) {
                 </Link>
               ) : (
                 <div className={cx('seen')}>
-                  <img
-                    className={cx('avatar-seen')}
-                    alt=""
-                    src="https://scontent.fdad3-6.fna.fbcdn.net/v/t1.30497-1/143086968_2856368904622192_1959732218791162458_n.png?stp=dst-png_p100x100&_nc_cat=1&ccb=1-7&_nc_sid=2b6aad&_nc_ohc=M5xBkqsrW0IAX8B7Q47&_nc_ad=z-m&_nc_cid=1229&_nc_ht=scontent.fdad3-6.fna&oh=00_AfCER-NLrjGTjrrNnaCICl2bC8FHJs1ci9cEk0sV4roDoQ&oe=65716C78"
-                  />
+                  <img className={cx('avatar-seen')} alt="img" src={images.user} />
                 </div>
               )}
             </div>

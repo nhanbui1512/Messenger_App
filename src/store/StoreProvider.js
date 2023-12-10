@@ -20,15 +20,13 @@ function StoreProvider({ children }) {
       console.log('connected to server');
       setIsConnected(true);
     }
-
     function onDisconnect() {
       setIsConnected(false);
     }
-
+    socket.connect();
     socket.on('connect', onConnect);
 
     socket.on('disconnect', onDisconnect);
-
     return () => {
       socket.off('connect', onConnect);
       socket.off('disconnect', onDisconnect);

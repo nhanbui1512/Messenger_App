@@ -18,7 +18,7 @@ export default function Header({ room }) {
             <GreenDot className={cx('avatar_greendot')} />
           </div>
           <div className={cx('content')}>
-            <span className={cx('user-name')}>{room.roomName}</span>
+            <span className={cx('user-name')}>{room.roomName || 'User Name'}</span>
             <span className={cx('status')}>Đang hoạt động</span>
           </div>
         </div>

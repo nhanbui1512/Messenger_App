@@ -13,7 +13,83 @@ import { getAllRoom } from '../../../Services/roomService';
 const cx = classNames.bind(styles);
 
 export default function ChatList({ children }) {
-  const [rooms, setRooms] = useState([]);
+  const [rooms, setRooms] = useState([
+    {
+      avatar: null,
+      createAtStr: '2023-11-27T04:25:16.000Z',
+      roomId: 1,
+      roomName: 'Group công ty',
+      numberUser: 4,
+      idHostUser: 1,
+      createAt: '2023-11-27T04:25:16.000Z',
+      users: [
+        {
+          avatar: 'nhanbuiavatar',
+          createAtStr: '2023-11-27T04:23:12.000Z',
+          updateAtStr: null,
+          userId: 1,
+          userName: 'nhanbui1512',
+          email: 'nhanb19@gmail.com',
+          phoneNumber: '09139023424',
+          createAt: '2023-11-27T04:23:12.000Z',
+          updateAt: null,
+        },
+        {
+          avatar: 'avatar.jpeg',
+          createAtStr: '2023-11-27T04:23:30.000Z',
+          updateAtStr: null,
+          userId: 2,
+          userName: 'nhanbui',
+          email: 'buithiennhan0345@gmail.com',
+          phoneNumber: '09139023424',
+          createAt: '2023-11-27T04:23:30.000Z',
+          updateAt: null,
+        },
+        {
+          avatar: 'nguyenvana.jpeg',
+          createAtStr: '2023-11-27T04:23:47.000Z',
+          updateAtStr: null,
+          userId: 3,
+          userName: 'avannguyen12',
+          email: 'nguyenvana@gmail.com',
+          phoneNumber: '09139023424',
+          createAt: '2023-11-27T04:23:47.000Z',
+          updateAt: null,
+        },
+        {
+          avatar: 'phantheanh.jpeg',
+          createAtStr: '2023-11-27T04:24:10.000Z',
+          updateAtStr: null,
+          userId: 4,
+          userName: 'theanh23',
+          email: 'phantheanh2312@gmail.com',
+          phoneNumber: '09139023424',
+          createAt: '2023-11-27T04:24:10.000Z',
+          updateAt: null,
+        },
+      ],
+      messages: [
+        {
+          createTimeStr: '23:52 29/11/2023',
+          last: '1 tuần',
+          messageId: 54,
+          content: 'Có tôi học bách khoa nè, bạn học khóa bao nhiêu',
+          createAt: '2023-11-29T16:52:03.000Z',
+          deleteAt: null,
+          userUserId: 1,
+          messagegroupId: 23,
+          user: {
+            avatar: 'nhanbuiavatar',
+            userId: 1,
+            userName: 'nhanbui1512',
+            email: 'nhanb19@gmail.com',
+            phoneNumber: '09139023424',
+          },
+          userName: 'Bạn',
+        },
+      ],
+    },
+  ]);
 
   const renderRoom = () => {
     return rooms.map((room) => {
