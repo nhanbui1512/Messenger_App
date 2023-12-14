@@ -1,21 +1,33 @@
 import { createContext } from 'react';
 import { useEffect, useState } from 'react';
 import { socket } from '../socket';
+import { getProfile } from '../Services/user';
 export const StoreContext = createContext();
 
 function StoreProvider({ children }) {
   const [theme, setTheme] = useState('light');
   const [isConnected, setIsConnected] = useState(socket.connected);
+  const [user, setUser] = useState({});
 
   const value = {
     theme,
-    setTheme,
+    user,
     socket,
     isConnected,
+    setTheme,
     setIsConnected,
   };
 
   useEffect(() => {
+    getProfile()
+      .then((res) => {
+        if (res.data) {
+          setUser(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     function onConnect() {
       console.log('connected to server');
       setIsConnected(true);

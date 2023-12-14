@@ -1,10 +1,9 @@
 import request from './request';
-import env from 'react-dotenv';
-
+import TOKEN from '../Constants/token';
 export const getAllRoom = async () => {
   const res = await request.get('/room/get-room', {
     headers: {
-      Authorization: `Bearer ${env.TOKEN}`,
+      Authorization: `Bearer ${TOKEN}`,
     },
   });
   return res.data;

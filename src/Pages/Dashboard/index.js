@@ -4,6 +4,7 @@ import styles from './Dashboard.module.scss';
 import ChatBox from '../../Components/ChatBox';
 import Sidebar from '../../Components/Sidebar';
 import { Route, Routes } from 'react-router-dom';
+
 const cx = classNames.bind(styles);
 
 function DashboardPage() {

@@ -4,10 +4,10 @@ import Header from './Header';
 import ChatContent from './ChatContent';
 import Footer from './Footer';
 import { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { StoreContext } from '../../store';
-import env from 'react-dotenv';
+import { getMessages } from '../../Services/message';
+
 const cx = classNames.bind(styles);
 
 function ChatBox() {
@@ -138,22 +138,59 @@ function ChatBox() {
   ]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/message/get-by-room?roomid=${roomid}&page=1&per_page=5`, {
-        headers: {
-          Authorization: `Bearer ${env.TOKEN}`,
-        },
-      })
+    getMessages({ roomid: roomid, page: 1, perPage: 5 })
       .then((res) => {
-        setRoom(res.data.room);
-        setMessages(res.data.data.reverse());
+        if (res.data) {
+          setRoom(res.room);
+          setMessages(res.data);
+        }
       })
-      .catch((error) => console.log(error.message));
+      .catch((err) => {
+        console.log(err);
+      });
 
     socket.emit('joinRoom', { roomid: roomid });
 
     socket.on('message', (msg) => {
-      console.log(msg);
+      setMessages((prev) => {
+        var prevMessages = [...prev];
+
+        const newMsg = {
+          createAtStr: '21:53 29/11/2023',
+          id: 123,
+          createAt: '2023-11-29T14:53:05.000Z',
+          userUserId: 1,
+          roomchatRoomId: 1,
+          user: {
+            avatar: 'nhanbuiavatar',
+            userId: 1,
+            userName: 'nhanbui1512',
+            email: 'nhanb19@gmail.com',
+            phoneNumber: '09139023424',
+          },
+          messages: [
+            {
+              createTimeStr: '21:50 29/11/2023',
+              last: '3 ngày',
+              messageId: 36,
+              content: msg,
+              createAt: '2023-11-29T14:50:46.000Z',
+              deleteAt: null,
+              userUserId: 1,
+              roomchatRoomId: 1,
+              messagegroupId: 19,
+              reactions: {
+                data: [],
+              },
+            },
+          ],
+          myself: false,
+        };
+
+        prevMessages.push(newMsg);
+
+        return prevMessages;
+      });
     });
   }, [roomid, socket]);
   return (

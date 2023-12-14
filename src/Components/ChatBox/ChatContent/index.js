@@ -8,6 +8,7 @@ const cx = classNames.bind(styles);
 
 export default function ChatContent({ data, setMessages }) {
   const wrapperRef = useRef(null);
+
   const renderMessages = () => {
     return data?.map((item, index) => {
       return (
