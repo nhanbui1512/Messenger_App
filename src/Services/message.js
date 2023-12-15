@@ -4,7 +4,7 @@ import TOKEN from '../Constants/token';
 
 export const createNewMessage = async ({ content, roomId }) => {
   try {
-    const response = await axios.post(
+    var response = await axios.post(
       `http://localhost:3000/message/send-message`,
       {
         content: content,
@@ -17,7 +17,6 @@ export const createNewMessage = async ({ content, roomId }) => {
         },
       },
     );
-
     return response.data;
   } catch (error) {
     throw error;

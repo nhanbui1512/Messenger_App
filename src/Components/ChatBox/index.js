@@ -15,7 +15,6 @@ function ChatBox() {
   const socket = context.socket;
   const [room, setRoom] = useState({});
   const { roomid } = useParams();
-
   const [messages, setMessages] = useState([
     {
       createAtStr: '23:52 29/11/2023',
@@ -136,7 +135,6 @@ function ChatBox() {
       myself: true,
     },
   ]);
-
   useEffect(() => {
     getMessages({ roomid: roomid, page: 1, perPage: 5 })
       .then((res) => {
@@ -152,44 +150,17 @@ function ChatBox() {
     socket.emit('joinRoom', { roomid: roomid });
 
     socket.on('message', (msg) => {
+      if (msg.userUserId !== context.user.userId) msg.myself = false;
+      // receive and handle message from socket
       setMessages((prev) => {
-        var prevMessages = [...prev];
-
-        const newMsg = {
-          createAtStr: '21:53 29/11/2023',
-          id: 123,
-          createAt: '2023-11-29T14:53:05.000Z',
-          userUserId: 1,
-          roomchatRoomId: 1,
-          user: {
-            avatar: 'nhanbuiavatar',
-            userId: 1,
-            userName: 'nhanbui1512',
-            email: 'nhanb19@gmail.com',
-            phoneNumber: '09139023424',
-          },
-          messages: [
-            {
-              createTimeStr: '21:50 29/11/2023',
-              last: '3 ngày',
-              messageId: 36,
-              content: msg,
-              createAt: '2023-11-29T14:50:46.000Z',
-              deleteAt: null,
-              userUserId: 1,
-              roomchatRoomId: 1,
-              messagegroupId: 19,
-              reactions: {
-                data: [],
-              },
-            },
-          ],
-          myself: false,
-        };
-
-        prevMessages.push(newMsg);
-
-        return prevMessages;
+        const prevMsgs = [...prev];
+        const isExist = prevMsgs.find((msgGroup) => msgGroup.id === msg.id);
+        if (isExist) {
+          prevMsgs[prevMsgs.length - 1].messages.push(msg.messages[msg.messages.length - 1]);
+        } else {
+          prevMsgs.push(msg);
+        }
+        return prevMsgs;
       });
     });
   }, [roomid, socket]);

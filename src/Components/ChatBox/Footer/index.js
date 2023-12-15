@@ -39,44 +39,42 @@ export default function Footer({ setMessages }) {
     }
   };
 
-  const handleSendMessage = async () => {
+  const changeDOM = (result) => {
+    const moment = new Date();
+    setMessages((prevState) => {
+      const lastMessage = prevState[prevState.length - 1];
+      const createAt = new Date(lastMessage.createAt);
+      const minutesSpace = Math.floor((moment - createAt) / (60 * 1000));
+      // nếu nhóm tin nhắn cuối cùng là ko phải là mình gửi hoặc k/cách thời gian là trên 1 phút
+      if (!lastMessage.myself || minutesSpace > 2) {
+        // tạo ra 1 nhóm tin nhắn và thêm 1 tin nhắn vào trong
+        const newgroupMessage = result;
+        return [...prevState, newgroupMessage]; // thêm nhóm tin nhắn vào cuối cùng của state
+      } else if (lastMessage.myself) {
+        // nếu nhóm tin nhắn là do mình gửi
+        const newState = [...prevState];
+        const newMessage = result.messages[result.messages.length - 1];
+        newState[newState.length - 1].messages.push(newMessage); // thêm tin nhắn vào nhóm tin nhắn cuối cùng
+        return newState;
+      }
+    });
+  };
+
+  const handleSendMessage = () => {
     // mount message into DOM
     if (valueChat.trim() !== '') {
-      socket.emit('message', valueChat);
-
       createNewMessage({ content: valueChat, roomId: roomid })
         .then((res) => {
           return res.data;
         })
         .then((data) => {
           changeDOM(data);
+          socket.emit('message', data);
         })
         .catch((err) => {
           console.log(err);
         });
     }
-
-    const changeDOM = (result) => {
-      const moment = new Date();
-      setMessages((prevState) => {
-        const lastMessage = prevState[prevState.length - 1];
-        const createAt = new Date(lastMessage.createAt);
-        const minutesSpace = Math.floor((moment - createAt) / (60 * 1000));
-        // nếu nhóm tin nhắn cuối cùng là ko phải là mình gửi hoặc k/cách thời gian là trên 1 phút
-        if (!lastMessage.myself || minutesSpace > 2) {
-          // tạo ra 1 nhóm tin nhắn và thêm 1 tin nhắn vào trong
-          const newgroupMessage = result;
-          return [...prevState, newgroupMessage]; // thêm nhóm tin nhắn vào cuối cùng của state
-        } else if (lastMessage.myself) {
-          // nếu nhóm tin nhắn là do mình gửi
-          const newState = [...prevState];
-
-          const newMessage = result.messages.pop();
-          newState[newState.length - 1].messages.push(newMessage); // thêm tin nhắn vào nhóm tin nhắn cuối cùng
-          return newState;
-        }
-      });
-    };
 
     // visible menu buttons
     setScale(false);
