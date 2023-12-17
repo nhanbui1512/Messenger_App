@@ -26,6 +26,13 @@
   width: 75px;
   height: 75px;
 }
+h1 {
+  color: rgba(0, 0, 0, 1);
+  font-size: 40px;
+  font-weight: 300;
+  margin-bottom: 24px;
+  text-align: center;
+}
 .slogan-content {
   color: rgba(0, 0, 0, 1);
   font-size: 35px;
@@ -34,6 +41,20 @@
   margin-bottom: 45px;
   margin-top: 24px;
   text-align: center;
+}
+.fail-container {
+  color: #f03d25;
+  display: block;
+  font-size: 15px;
+  line-height: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 45px;
+  margin-top: 24px;
+  a {
+    color: #f03d25;
+  }
 }
 .input {
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -86,4 +107,26 @@
   font-size: 14px;
   font-weight: normal;
   margin-left: 10px;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.footer-item {
+  color: #262626;
+  font-size: 15px;
+  font-weight: 400;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.footer-space {
+  margin: 0 14px;
+}
+.coppyright {
+  text-decoration: none !important;
+  cursor: auto;
 }
