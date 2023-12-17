@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalStyles from './Components/GlobalStyles';
 import DashboardPage from './Pages/Dashboard';
 import { DefaultLayout } from './Layouts';
+import Login from './Pages/Login';
 
 function App() {
   return (
@@ -18,10 +19,10 @@ function App() {
                   <DashboardPage />
                 </DefaultLayout>
               }
-            ></Route>
+            />
 
             <Route
-              key={0}
+              key={1}
               path="/*"
               element={
                 <DefaultLayout>
@@ -29,6 +30,8 @@ function App() {
                 </DefaultLayout>
               }
             />
+
+            <Route key={2} path="/login" element={<Login />} />
           </Routes>
         </div>
       </BrowserRouter>

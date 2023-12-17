@@ -19,30 +19,29 @@ function StoreProvider({ children }) {
   };
 
   useEffect(() => {
-    getProfile()
-      .then((res) => {
-        if (res.data) {
-          setUser(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    function onConnect() {
-      console.log('connected to server');
-      setIsConnected(true);
-    }
-    function onDisconnect() {
-      setIsConnected(false);
-    }
-    socket.connect();
-    socket.on('connect', onConnect);
-
-    socket.on('disconnect', onDisconnect);
-    return () => {
-      socket.off('connect', onConnect);
-      socket.off('disconnect', onDisconnect);
-    };
+    // getProfile()
+    //   .then((res) => {
+    //     if (res.data) {
+    //       setUser(res.data);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    // function onConnect() {
+    //   console.log('connected to server');
+    //   setIsConnected(true);
+    // }
+    // function onDisconnect() {
+    //   setIsConnected(false);
+    // }
+    // socket.connect();
+    // socket.on('connect', onConnect);
+    // socket.on('disconnect', onDisconnect);
+    // return () => {
+    //   socket.off('connect', onConnect);
+    //   socket.off('disconnect', onDisconnect);
+    // };
   }, []);
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
