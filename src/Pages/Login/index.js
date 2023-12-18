@@ -44,7 +44,7 @@ function Login() {
           console.log(err);
         });
     }
-  }, []);
+  }, [navigate]);
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
@@ -52,7 +52,7 @@ function Login() {
           <div className={cx('logo')}>
             <Image className={cx('logo-img')} src={images.logo}></Image>
           </div>
-          {loginFail && <h1>Messenger</h1>}
+          {loginFail && <h1 className={cx('name-app')}>Messenger</h1>}
           {loginFail || (
             <div className={cx('slogan-container')}>
               <h2 className={cx('slogan-content')}>Kết nối với những người bạn yêu quý.</h2>

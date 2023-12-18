@@ -9,6 +9,7 @@ import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import { Link, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllRoom } from '../../../Services/roomService';
+import { getCookie } from '../../../Services/local/cookie';
 
 const cx = classNames.bind(styles);
 
@@ -98,7 +99,8 @@ export default function ChatList({ children }) {
   };
 
   useEffect(() => {
-    getAllRoom()
+    const token = getCookie('authToken');
+    getAllRoom({ token: token })
       .then((res) => {
         if (res.data) {
           setRooms(res.data);
@@ -112,7 +114,7 @@ export default function ChatList({ children }) {
     <div className={cx('wrapper')}>
       <div className={cx('header')}>
         <div className={cx('title-wrap')}>
-          <h1 className={cx('title')}>Chat</h1>
+          <h1 className={cx('title')}>Đoạn Chat</h1>
         </div>
         <Link to={'/new'}>
           <CircleButton icon={<EditIcon />} />

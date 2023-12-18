@@ -1,8 +1,7 @@
 import axios from 'axios';
 import request from './request';
-import TOKEN from '../Constants/token';
 
-export const createNewMessage = async ({ content, roomId }) => {
+export const createNewMessage = async ({ content, roomId, token }) => {
   try {
     var response = await axios.post(
       `http://localhost:3000/message/send-message`,
@@ -13,7 +12,7 @@ export const createNewMessage = async ({ content, roomId }) => {
       {
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          Authorization: `Bearer ${TOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       },
     );
@@ -23,12 +22,12 @@ export const createNewMessage = async ({ content, roomId }) => {
   }
 };
 
-export const getMessages = async ({ roomid, page, perPage }) => {
+export const getMessages = async ({ roomid, page, perPage, token }) => {
   const res = await request.get(
     `/message/get-by-room?roomid=${roomid}&page=${page}&per_page=${perPage}`,
     {
       headers: {
-        Authorization: `Bearer ${TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     },
   );

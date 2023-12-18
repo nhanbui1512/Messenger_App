@@ -7,6 +7,7 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { StoreContext } from '../../store';
 import { getMessages } from '../../Services/message';
+import { getCookie } from '../../Services/local/cookie';
 
 const cx = classNames.bind(styles);
 
@@ -136,7 +137,9 @@ function ChatBox() {
     },
   ]);
   useEffect(() => {
-    getMessages({ roomid: roomid, page: 1, perPage: 5 })
+    const token = getCookie('authToken');
+
+    getMessages({ roomid: roomid, page: 1, perPage: 5, token: token })
       .then((res) => {
         if (res.data) {
           setRoom(res.room);

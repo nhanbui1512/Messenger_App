@@ -1,9 +1,8 @@
 import request from './request';
-import TOKEN from '../Constants/token';
-export const getAllRoom = async () => {
+export const getAllRoom = async ({ token }) => {
   const res = await request.get('/room/get-room', {
     headers: {
-      Authorization: `Bearer ${TOKEN}`,
+      Authorization: `Bearer ${token}`,
     },
   });
   return res.data;
