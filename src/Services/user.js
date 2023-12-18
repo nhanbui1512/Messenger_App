@@ -1,11 +1,10 @@
 import request from './request';
-import TOKEN from '../Constants/token';
 
-export const getProfile = async () => {
+export const getMyProfile = async (token) => {
   try {
     const res = await request.get(`/user/get-my-info`, {
       headers: {
-        Authorization: `Bearer ${TOKEN}`,
+        Authorization: `Bearer ${token}`,
       },
     });
 

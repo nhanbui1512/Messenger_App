@@ -2,16 +2,49 @@ import classNames from 'classnames/bind';
 import styles from './Login.module.scss';
 import Image from '../../Components/Image';
 import images from '../../assests/images';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import CheckLogin from '../../Services/login';
+import { getCookie, setToken } from '../../Services/local/cookie';
+import { getMyProfile } from '../../Services/user';
 const cx = classNames.bind(styles);
 
 function Login() {
   const [loginFail, setLoginFail] = useState(false);
-  const handleLogin = () => {
-    setLoginFail(!loginFail);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // setLoginFail(!loginFail);
+    CheckLogin(email, password)
+      .then((res) => {
+        if (res.result === false) {
+          setLoginFail(true);
+        }
+        if (res.result === true && res.token) {
+          setToken({ token: res.token });
+          navigate('/');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  useEffect(() => {
+    const token = getCookie('authToken');
+    if (token) {
+      getMyProfile(token)
+        .then((res) => {
+          if (res.data) navigate('/');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
   return (
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
@@ -33,9 +66,25 @@ function Login() {
               </div>
             </div>
           )}
-          <div className={cx('login-form')}>
-            <input placeholder="Email hoặc số điện thoại" className={cx('input')}></input>
-            <input type="password" placeholder="Mật khẩu" className={cx('input')}></input>
+          <form className={cx('login-form')}>
+            <input
+              value={email}
+              placeholder="Email hoặc số điện thoại"
+              className={cx('input')}
+              onInput={(e) => {
+                setEmail(e.target.value);
+              }}
+            ></input>
+            <input
+              onInput={(e) => {
+                setPassword(e.target.value);
+              }}
+              value={password}
+              type="password"
+              placeholder="Mật khẩu"
+              className={cx('input')}
+              autoComplete="on"
+            ></input>
             <div>
               <button onClick={handleLogin} className={cx('login-btn')}>
                 Tiếp tục
@@ -47,7 +96,7 @@ function Login() {
                 <p className={cx('label')}>Duy trì đăng nhập</p>
               </div>
             </div>
-          </div>
+          </form>
         </div>
         <div className={cx('footer')}>
           <div className={cx('footer-wrap')}>

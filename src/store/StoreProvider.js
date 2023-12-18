@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import { useEffect, useState } from 'react';
 import { socket } from '../socket';
-import { getProfile } from '../Services/user';
+import { getMyProfile } from '../Services/user';
 export const StoreContext = createContext();
 
 function StoreProvider({ children }) {
@@ -19,7 +19,7 @@ function StoreProvider({ children }) {
   };
 
   useEffect(() => {
-    // getProfile()
+    // getMyProfile()
     //   .then((res) => {
     //     if (res.data) {
     //       setUser(res.data);
