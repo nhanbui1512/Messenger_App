@@ -12,8 +12,8 @@ function App() {
         <div className={`App`}>
           <Routes>
             <Route
-              key={0}
-              path="/active"
+              key={1}
+              path="/*"
               element={
                 <DefaultLayout>
                   <DashboardPage />
@@ -22,8 +22,8 @@ function App() {
             />
 
             <Route
-              key={1}
-              path="/*"
+              key={0}
+              path="/active/*"
               element={
                 <DefaultLayout>
                   <DashboardPage />

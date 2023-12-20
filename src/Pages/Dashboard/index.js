@@ -29,7 +29,7 @@ function DashboardPage() {
     <div className={cx('wrapper')}>
       <Sidebar />
       <Routes>
-        <Route key={1} path="/room/:roomid" element={<ChatBox />}></Route>
+        <Route key={1} path="/room/:roomid" element={<ChatBox />} />
       </Routes>
     </div>
   );

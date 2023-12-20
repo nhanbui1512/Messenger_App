@@ -6,8 +6,10 @@
   width: 100%;
   display: flex;
 }
-label {
+.search-box {
   background-color: #f0f2f5;
+  padding: 0 2px;
+  align-items: center;
   border-radius: 50px;
 }
 .search-btn {
@@ -22,7 +24,7 @@ label {
   }
 }
 .search-input {
-  width: 100%;
+  flex: 1;
   background-color: transparent;
   font-size: 0.9375rem;
   height: 36px;
@@ -40,4 +42,21 @@ label {
   width: 18px;
   height: 18px;
   color: #65676b;
+}
+
+.cancle-btn {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.06);
+  }
+  .cancle-icon {
+    color: #65676b;
+  }
 }
