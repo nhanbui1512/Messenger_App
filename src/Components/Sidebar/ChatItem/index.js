@@ -64,7 +64,6 @@ export default function ChatItem({ name, newMess = false, data = {} }) {
       icon: <ExclamationMark width={24} height={24} />,
     },
   ];
-
   return (
     <div className={cx('div-box', 'pd_0_6')}>
       <NavLink
@@ -74,7 +73,7 @@ export default function ChatItem({ name, newMess = false, data = {} }) {
         <div style={{ width: '100%' }} className={['pd_10']}>
           <div style={{ width: '100%' }} className={cx('container')}>
             <div className={cx('avatar')}>
-              <CircleImage />
+              <CircleImage src={data.avatar} />
             </div>
             <div className={cx('info-container')}>
               <span className={cx('chat-name')}>{name || 'Nhân Bùi'}</span>
@@ -84,7 +83,7 @@ export default function ChatItem({ name, newMess = false, data = {} }) {
                   <div className={cx('message-container')}>
                     <span
                       className={cx('message')}
-                    >{`${data.messages[0].userName}: ${data.messages[0].content}`}</span>
+                    >{`${data.messages[0].user.userName}: ${data.messages[0].content}`}</span>
                   </div>
                   <div className={cx('time-container')}>
                     <span className={cx('time')}>{`. ${data.messages[0].last}`}</span>
@@ -99,7 +98,7 @@ export default function ChatItem({ name, newMess = false, data = {} }) {
                 </Link>
               ) : (
                 <div className={cx('seen')}>
-                  <img className={cx('avatar-seen')} alt="img" src={images.user} />
+                  <img className={cx('avatar-seen')} alt="img" src={data.avatar || images.user} />
                 </div>
               )}
             </div>

@@ -12,6 +12,7 @@ import EmojiPicker from 'emoji-picker-react';
 import { createNewMessage } from '../../../Services/message';
 import { useParams } from 'react-router-dom';
 import { StoreContext } from '../../../store';
+import { getCookie } from '../../../Services/local/cookie';
 
 const cx = classNames.bind(styles);
 
@@ -62,8 +63,10 @@ export default function Footer({ setMessages }) {
 
   const handleSendMessage = () => {
     // mount message into DOM
+    const token = getCookie('authToken');
+
     if (valueChat.trim() !== '') {
-      createNewMessage({ content: valueChat, roomId: roomid })
+      createNewMessage({ content: valueChat, roomId: roomid, token: token })
         .then((res) => {
           return res.data;
         })

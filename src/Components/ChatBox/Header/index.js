@@ -14,7 +14,7 @@ export default function Header({ room }) {
       <div className={cx('information')}>
         <div className={cx('user')}>
           <div className={cx('avatar-container')}>
-            <CircleImage className={cx('avatar')} />
+            <CircleImage src={room.avatar} className={cx('avatar')} />
             <GreenDot className={cx('avatar_greendot')} />
           </div>
           <div className={cx('content')}>
