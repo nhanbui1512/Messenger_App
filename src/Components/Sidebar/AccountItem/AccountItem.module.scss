@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  height: 48px;
+  align-items: center;
+  border-radius: 8px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+  }
+}
+.avatar-wrapper {
+  padding: 6px;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+}
+.content {
+  flex: 1;
+}
+.username-wrap {
+  display: flex;
+  align-items: center;
+  .username {
+    font-size: 14px;
+    color: var(--primary-black);
+  }
+}

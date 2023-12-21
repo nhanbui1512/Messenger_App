@@ -13,3 +13,16 @@ export const getMyProfile = async (token) => {
     throw error;
   }
 };
+
+export const searchUser = async (token, searchValue) => {
+  try {
+    const res = await request.get(`/user/search?search=${searchValue}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};

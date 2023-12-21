@@ -10,6 +10,7 @@ import { Link, Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getAllRoom } from '../../../Services/roomService';
 import { getCookie } from '../../../Services/local/cookie';
+import AccountItem from '../AccountItem';
 
 const cx = classNames.bind(styles);
 
@@ -91,6 +92,8 @@ export default function ChatList({ children }) {
       ],
     },
   ]);
+  const [isSearch, setIsSearch] = useState(false);
+  const [searchResult, setSearchResult] = useState([]);
 
   const renderRoom = () => {
     return rooms.map((room) => {
@@ -110,6 +113,7 @@ export default function ChatList({ children }) {
         console.log(err);
       });
   }, []);
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('header')}>
@@ -121,25 +125,40 @@ export default function ChatList({ children }) {
         </Link>
       </div>
       <div className={cx('search-box')}>
-        <Search />
-      </div>
-      <div className={cx('chat-list')}>
-        <Routes>
-          <Route
-            element={<ChatItem newMess name={'Tin nhắn mới'}></ChatItem>}
-            key={1}
-            path="/new"
-          ></Route>
-        </Routes>
-        {renderRoom()}
+        <Search setSearchResult={setSearchResult} setIsSearch={setIsSearch} />
       </div>
 
-      <div className={cx('footer')}>
-        <div className={cx('footer-content')}>
-          <FontAwesomeIcon className={cx('download-icon')} icon={faDownload} />
-          <span>Dùng thử Messenger dành cho Windows</span>
+      {isSearch || (
+        <>
+          <div className={cx('chat-list')}>
+            <Routes>
+              <Route
+                element={<ChatItem newMess name={'Tin nhắn mới'} />}
+                key={1}
+                path="/new"
+              ></Route>
+            </Routes>
+            {renderRoom()}
+          </div>
+
+          <div className={cx('footer')}>
+            <div className={cx('footer-content')}>
+              <FontAwesomeIcon className={cx('download-icon')} icon={faDownload} />
+              <span>Dùng thử Messenger dành cho Windows</span>
+            </div>
+          </div>
+        </>
+      )}
+
+      {isSearch && (
+        <div className={cx('chat-list')}>
+          <div style={{ paddingLeft: 6 }}>
+            {searchResult.map((account) => {
+              return <AccountItem data={account} key={account.userId} />;
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
