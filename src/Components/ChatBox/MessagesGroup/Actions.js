@@ -13,6 +13,8 @@ import PopperItem from '../../Popper/PopperItem';
 import 'tippy.js/dist/tippy.css';
 import Image from '../../Image';
 import { useState } from 'react';
+import { createReaction, deleteReaction } from '../../../Services/reaction';
+import { getCookie } from '../../../Services/local/cookie';
 
 const cx = classNames.bind(styles);
 
@@ -93,72 +95,102 @@ export default function Actions({ message, setMessages }) {
   };
 
   const createNewReact = (emotion) => {
-    setMessages((prev) => {
-      var groups = [...prev];
-      for (let group of groups) {
-        if (group.id === message.messagegroupId) {
-          for (let msg of group.messages) {
-            if (msg.messageId === message.messageId) {
-              const isExist = msg.reactions.data.find((item) => item.title === emotion.title);
-              // nếu đã tồn tại react trùng với react mà người dùng thả
-              if (isExist) {
-                for (let react of msg.reactions.data) {
-                  // xóa bỏ lịch sử react cũ của user đi
-                  react.users = react.users.filter((user) => user !== 1);
+    const token = getCookie('authToken') || '';
+    createReaction({ token, idMsg: message.messageId, emotion: emotion.title })
+      .then((res) => {
+        if (res.isSuccess) {
+          const dataMessage = res.dataMessage;
 
-                  // thêm userId vào react đã tồn tại
-                  if (react.title === emotion.title) react.users.push(1);
-                }
-                // loại bỏ những react mà không có user
-                msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
-              } else {
-                for (let react of msg.reactions.data) {
-                  // xóa bỏ lịch sử react cũ của user đi
-                  react.users = react.users.filter((user) => user !== 1);
-                }
-                // loại bỏ những react mà không có user
-                msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
+          setMessages((prev) => {
+            var groups = [...prev];
+            const group = groups.find((group) => group.id === dataMessage.messagegroupId);
+            const message = group.messages.find((msg) => msg.messageId === dataMessage.messageId);
+            message.reactions = dataMessage.reactions;
+            return groups;
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
 
-                // thêm một react mới hoàn toàn vào data
-                msg.reactions.data.push({
-                  title: emotion.title,
-                  users: [1],
-                });
+        // xử lý phía người dùng nhưng không dữ liệu phía Server không thay đổi
+        setMessages((prev) => {
+          var groups = [...prev];
+          for (let group of groups) {
+            if (group.id === message.messagegroupId) {
+              for (let msg of group.messages) {
+                if (msg.messageId === message.messageId) {
+                  const isExist = msg.reactions.data.find((item) => item.title === emotion.title);
+                  // nếu đã tồn tại react trùng với react mà người dùng thả
+                  if (isExist) {
+                    for (let react of msg.reactions.data) {
+                      // xóa bỏ lịch sử react cũ của user đi
+                      react.users = react.users.filter((user) => user !== 1);
+
+                      // thêm userId vào react đã tồn tại
+                      if (react.title === emotion.title) react.users.push(1);
+                    }
+                    // loại bỏ những react mà không có user
+                    msg.reactions.data = msg.reactions.data.filter(
+                      (react) => react.users.length > 0,
+                    );
+                  } else {
+                    for (let react of msg.reactions.data) {
+                      // xóa bỏ lịch sử react cũ của user đi
+                      react.users = react.users.filter((user) => user !== 1);
+                    }
+                    // loại bỏ những react mà không có user
+                    msg.reactions.data = msg.reactions.data.filter(
+                      (react) => react.users.length > 0,
+                    );
+
+                    // thêm một react mới hoàn toàn vào data
+                    msg.reactions.data.push({
+                      title: emotion.title,
+                      users: [1],
+                    });
+                  }
+                  break;
+                }
               }
               break;
             }
           }
-          break;
-        }
-      }
-      return groups;
-    });
+
+          return groups;
+        });
+      });
   };
 
   const deleteReact = (emotion) => {
-    setMessages((prev) => {
-      var groups = [...prev];
-      for (let group of groups) {
-        if (group.id === message.messagegroupId) {
-          for (let msg of group.messages) {
-            if (msg.messageId === message.messageId) {
-              for (let react of msg.reactions.data) {
-                if (react.title === emotion.title) {
-                  // tìm đến react mà user đã thả và xóa userId
-                  react.users = react.users.filter((user) => user !== 1);
-                }
-              }
-              // xóa những react nào có số lượng = 0 (trong react mà không có user thì loại bỏ)
-              msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
-
-              break;
-            }
-          }
-          break;
+    const token = getCookie('authToken') || '';
+    deleteReaction({ token, idMsg: message.messageId })
+      .then((res) => {
+        // console.log(res);
+        if (res.isSuccess) {
+          const dataMessage = res.dataMessage;
+          setMessages((prev) => {
+            var groups = [...prev];
+            const group = groups.find((group) => group.id === message.messagegroupId);
+            const msg = group.messages.find((msg) => msg.messageId === message.messageId);
+            msg.reactions = dataMessage.reactions;
+            return groups;
+          });
         }
-      }
-      return groups;
-    });
+      })
+      .catch((err) => {
+        setMessages((prev) => {
+          var groups = [...prev];
+          const group = groups.find((group) => group.id === message.messagegroupId);
+          const msg = group.messages.find((msg) => msg.messageId === message.messageId);
+          const react = msg.reactions.data.find((react) => react.title === emotion.title);
+          react.users = react.users.filter((user) => user !== 1);
+          msg.reactions.data = msg.reactions.data.filter((react) => react.users.length > 0);
+
+          return groups;
+        });
+        console.log(err);
+      });
   };
 
   const handleReact = (emotion) => {

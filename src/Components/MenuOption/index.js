@@ -15,6 +15,8 @@ import {
 } from '../Icons';
 import Header from './Header';
 import { useState } from 'react';
+import { deleteCookie } from '../../Services/local/cookie';
+
 const cx = classNames.bind(styles);
 
 export default function MenuOption() {
@@ -88,6 +90,9 @@ export default function MenuOption() {
     {
       title: 'Đăng xuất',
       icon: <LogoutIcon />,
+      handleClick: () => {
+        deleteCookie('authToken');
+      },
     },
   ];
 
@@ -109,6 +114,9 @@ export default function MenuOption() {
             onClick={() => {
               if (item.children) {
                 setHistory((prev) => [...prev, item.children]);
+              }
+              if (item.handleClick) {
+                item.handleClick();
               }
             }}
             key={index}
