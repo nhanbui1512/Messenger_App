@@ -16,6 +16,7 @@ function ChatBox() {
   const socket = context.socket;
   const [room, setRoom] = useState({});
   const { roomid } = useParams();
+  const [more, setMore] = useState(false);
   const [messages, setMessages] = useState([
     {
       createAtStr: '23:52 29/11/2023',
@@ -136,6 +137,7 @@ function ChatBox() {
       myself: true,
     },
   ]);
+
   useEffect(() => {
     const token = getCookie('authToken');
 
@@ -169,16 +171,19 @@ function ChatBox() {
   }, [roomid, socket]);
   return (
     <div className={cx('wrapper')}>
-      <div className={cx('header')}>
-        <Header room={room} />
-      </div>
+      <div className={cx('content-wrapper')}>
+        <div className={cx('header')}>
+          <Header setMore={setMore} room={room} />
+        </div>
 
-      <div className={cx('content')}>
-        <ChatContent data={messages} setMessages={setMessages} />
+        <div className={cx('content')}>
+          <ChatContent data={messages} setMessages={setMessages} />
+        </div>
+        <div className={cx('footer')}>
+          <Footer setMessages={setMessages} />
+        </div>
       </div>
-      <div className={cx('footer')}>
-        <Footer setMessages={setMessages} />
-      </div>
+      {more && <div>More </div>}
     </div>
   );
 }

@@ -8,7 +8,7 @@ import Tippy from '@tippyjs/react';
 
 const cx = classNames.bind(styles);
 
-export default function Header({ room }) {
+export default function Header({ setMore, room }) {
   return (
     <div className={cx('container')}>
       <div className={cx('information')}>
@@ -49,6 +49,9 @@ export default function Header({ room }) {
         <Tippy content="Thông tin về cuộc trò chuyện">
           <div>
             <CircleButton
+              onClick={() => {
+                setMore((prev) => !prev);
+              }}
               transparent
               className={cx('cont-btn')}
               icon={<ElipseIcon width={20} height={20} className={cx('icon')} />}
