@@ -1,0 +1,54 @@
+.wrapper {
+  width: 370px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+.avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+  padding-bottom: 12px;
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+}
+.user-name {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px;
+  text-align: center;
+  line-height: 1.34;
+  a {
+    font-size: 16px;
+    color: var(--primary-black);
+    padding: 0 12px;
+    font-weight: 600;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+.status {
+  font-size: 12px;
+  color: var(--primary-gray);
+}
+.buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px 12px 0;
+}
+.func-button-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 3px 6px;
+  max-width: 72px;
+}
+.desc-btn {
+  font-size: 12px;
+  color: var(--primary-black);
+}
+.desc-btn {
+  display: flex;
+}

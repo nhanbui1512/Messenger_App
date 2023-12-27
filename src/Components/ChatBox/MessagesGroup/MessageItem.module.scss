@@ -61,7 +61,7 @@
 .action-btn {
   width: 22px;
   height: 22px;
-  color: #65676b;
+  color: var(--primary-gray);
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }

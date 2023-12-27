@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { StoreContext } from '../../store';
 import { getMessages } from '../../Services/message';
 import { getCookie } from '../../Services/local/cookie';
+import Information from './Information';
 
 const cx = classNames.bind(styles);
 
@@ -183,7 +184,7 @@ function ChatBox() {
           <Footer setMessages={setMessages} />
         </div>
       </div>
-      {more && <div>More </div>}
+      {more && <Information />}
     </div>
   );
 }

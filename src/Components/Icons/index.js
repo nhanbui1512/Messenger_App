@@ -494,3 +494,18 @@ export const Emoji = ({ width = 28, height = 28, className = {} }) => {
     </svg>
   );
 };
+
+export const Facebook = ({ className, width = 20, height = 20 }) => {
+  return (
+    <svg
+      viewBox="6 6 24 24"
+      fill="currentColor"
+      width={width}
+      height={height}
+      className={className}
+      overflow="visible"
+    >
+      <path d="M18 7c6.075 0 11 4.925 11 11 0 5.49-4.023 10.041-9.281 10.866V21.18h2.563L22.77 18h-3.051v-2.063c0-.87.426-1.718 1.792-1.718h1.387v-2.707s-1.258-.215-2.462-.215c-2.512 0-4.155 1.523-4.155 4.28V18h-2.793v3.18h2.793v7.686C11.023 28.041 7 23.49 7 18c0-6.075 4.925-11 11-11z"></path>
+    </svg>
+  );
+};

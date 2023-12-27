@@ -118,7 +118,7 @@ export default function ChatList({ children }) {
     <div className={cx('wrapper')}>
       <div className={cx('header')}>
         <div className={cx('title-wrap')}>
-          <h1 className={cx('title')}>Đoạn Chat</h1>
+          <h1 className={cx('title')}>Đoạn chat</h1>
         </div>
         <Link to={'/new'}>
           <CircleButton icon={<EditIcon />} />
