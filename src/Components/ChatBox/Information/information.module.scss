@@ -1,4 +1,6 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
   width: 370px;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -51,4 +53,8 @@
 }
 .desc-btn {
   display: flex;
+}
+.menu-wrapper {
+  flex: 1 1;
+  overflow: scroll;
 }

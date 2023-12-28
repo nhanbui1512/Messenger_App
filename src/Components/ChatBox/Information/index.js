@@ -4,7 +4,9 @@ import styles from './information.module.scss';
 import CircleImage from '../../CircleImage';
 import { Link } from 'react-router-dom';
 import CircleButton from '../../CircleButton';
-import { Bell, Facebook, SearchIcon } from '../../Icons';
+import { Bell, Facebook, ImageIcon, LikeIcon, Pen, SearchIcon, Text } from '../../Icons';
+import DropdownMenu from '../../DropdownMenu';
+import MenuItem from '../../MenuItem';
 const cx = classNames.bind(styles);
 
 export default function Information() {
@@ -46,7 +48,39 @@ export default function Information() {
           </div>
         </div>
       </div>
-      <div>Body</div>
+      <div className={cx('menu-wrapper')}>
+        <div className={'pd_20_0 col'}>
+          <div className="pd_0_8">
+            <DropdownMenu title="Thông tin về đoạn chat">
+              <MenuItem />
+            </DropdownMenu>
+          </div>
+          <div className="pd_0_8">
+            <DropdownMenu title="Tùy chỉnh đoạn chat">
+              <MenuItem title="Đổi tên đoạn chat" icon={<Pen />} />
+              <MenuItem title="Thay đổi ảnh" icon={<ImageIcon fill="#000" />} />
+              <MenuItem
+                title="Thay đổi biểu tượng cảm xúc"
+                icon={<LikeIcon width={16} height={16} />}
+              />
+              <MenuItem title="Chỉnh sửa biệt danh" icon={<Text />} />
+              <MenuItem
+                title="Tìm kiếm trong cuộc trò chuyện"
+                icon={<SearchIcon width={16} height={16} />}
+              />
+            </DropdownMenu>
+          </div>
+          <div className="pd_0_8">
+            <DropdownMenu title="Thành viên trong đoạn chat"></DropdownMenu>
+          </div>
+          <div className="pd_0_8">
+            <DropdownMenu title="File phương tiện, file và liên kết" />
+          </div>
+          <div className="pd_0_8">
+            <DropdownMenu title="Quyền riêng tư & hỗ trợ" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -138,6 +138,7 @@ function ChatBox() {
       myself: true,
     },
   ]);
+  const userId = context.user.userId;
 
   useEffect(() => {
     const token = getCookie('authToken');
@@ -156,7 +157,7 @@ function ChatBox() {
     socket.emit('joinRoom', { roomid: roomid });
 
     socket.on('message', (msg) => {
-      if (msg.userUserId !== context.user.userId) msg.myself = false;
+      if (msg.userUserId !== userId) msg.myself = false;
       // receive and handle message from socket
       setMessages((prev) => {
         const prevMsgs = [...prev];
@@ -169,7 +170,7 @@ function ChatBox() {
         return prevMsgs;
       });
     });
-  }, [roomid, socket]);
+  }, [roomid, socket, userId]);
   return (
     <div className={cx('wrapper')}>
       <div className={cx('content-wrapper')}>

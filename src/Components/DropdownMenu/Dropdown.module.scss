@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  padding: 0 8px;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 6px;
+  user-select: none;
+  &:hover {
+    background-color: #f0f2f5;
+  }
+}
+.title {
+  font-size: 14px;
+  color: var(--primary-black);
+  font-weight: 500;
+  display: flex;
+  padding: 12px 0px;
+}
+.icon-wrap {
+  display: flex;
+  padding: 8px 0px 8px 8px;
+  .right-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
