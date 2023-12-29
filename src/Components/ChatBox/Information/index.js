@@ -4,9 +4,22 @@ import styles from './information.module.scss';
 import CircleImage from '../../CircleImage';
 import { Link } from 'react-router-dom';
 import CircleButton from '../../CircleButton';
-import { Bell, Facebook, ImageIcon, LikeIcon, Pen, SearchIcon, Text } from '../../Icons';
+import {
+  Bell,
+  Block,
+  Facebook,
+  ImageIcon,
+  LikeIcon,
+  MuteMessageIcon,
+  Pen,
+  SearchIcon,
+  Text,
+  Warning,
+} from '../../Icons';
 import DropdownMenu from '../../DropdownMenu';
 import MenuItem from '../../MenuItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBellSlash, faFile, faImages, faLink } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 
 export default function Information() {
@@ -74,10 +87,19 @@ export default function Information() {
             <DropdownMenu title="Thành viên trong đoạn chat"></DropdownMenu>
           </div>
           <div className="pd_0_8">
-            <DropdownMenu title="File phương tiện, file và liên kết" />
+            <DropdownMenu title="File phương tiện, file và liên kết">
+              <MenuItem title="File phương tiện" icon={<FontAwesomeIcon icon={faImages} />} />
+              <MenuItem title="File" icon={<FontAwesomeIcon icon={faFile} />} />
+              <MenuItem title="Liên kết" icon={<FontAwesomeIcon icon={faLink} />} />
+            </DropdownMenu>
           </div>
           <div className="pd_0_8">
-            <DropdownMenu title="Quyền riêng tư & hỗ trợ" />
+            <DropdownMenu title="Quyền riêng tư & hỗ trợ">
+              <MenuItem title="Tắt thông báo" icon={<FontAwesomeIcon icon={faBellSlash} />} />
+              <MenuItem title="Hạn chế" icon={<MuteMessageIcon />} />
+              <MenuItem title="Chặn" icon={<Block />} />
+              <MenuItem title="Báo cáo" icon={<Warning />} />
+            </DropdownMenu>
           </div>
         </div>
       </div>
