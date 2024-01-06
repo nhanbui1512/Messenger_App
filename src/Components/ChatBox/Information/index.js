@@ -20,6 +20,7 @@ import DropdownMenu from '../../DropdownMenu';
 import MenuItem from '../../MenuItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBellSlash, faFile, faImages, faLink } from '@fortawesome/free-solid-svg-icons';
+import MemberItem from '../../MemberItem';
 const cx = classNames.bind(styles);
 
 export default function Information() {
@@ -84,7 +85,9 @@ export default function Information() {
             </DropdownMenu>
           </div>
           <div className="pd_0_8">
-            <DropdownMenu title="Thành viên trong đoạn chat"></DropdownMenu>
+            <DropdownMenu title="Thành viên trong đoạn chat">
+              <MemberItem />
+            </DropdownMenu>
           </div>
           <div className="pd_0_8">
             <DropdownMenu title="File phương tiện, file và liên kết">

@@ -15,7 +15,7 @@ import {
 } from '../Icons';
 import Header from './Header';
 import { useState } from 'react';
-import { deleteCookie } from '../../Services/local/cookie';
+import { removeToken } from '../../Services/local/cookie';
 
 const cx = classNames.bind(styles);
 
@@ -91,7 +91,8 @@ export default function MenuOption() {
       title: 'Đăng xuất',
       icon: <LogoutIcon />,
       handleClick: () => {
-        deleteCookie('authToken');
+        removeToken();
+        window.location.reload();
       },
     },
   ];

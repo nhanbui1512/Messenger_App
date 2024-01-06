@@ -143,7 +143,7 @@ function ChatBox() {
   useEffect(() => {
     const token = getCookie('authToken');
 
-    getMessages({ roomid: roomid, page: 1, perPage: 5, token: token })
+    getMessages({ roomid: roomid, page: 1, perPage: 10, token: token })
       .then((res) => {
         if (res.data) {
           setRoom(res.room);

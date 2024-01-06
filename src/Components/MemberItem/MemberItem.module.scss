@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+}
+.avatar-container {
+  display: flex;
+  padding: 8px 8px 8px 0;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+.infor-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 50px;
+}
+.user-name {
+  display: flex;
+  span {
+    font-size: 14px;
+    color: var(--primary-black);
+    font-weight: 600;
+  }
+}
+.add-by {
+  display: flex;
+  span {
+    font-size: 12px;
+    color: var(--primary-gray);
+  }
+}
+.more-btn {
+  background-color: transparent;
+}
+.more-icon {
+  font-size: 18px;
+}
