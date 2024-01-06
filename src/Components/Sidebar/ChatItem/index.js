@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './ChatItem.module.scss';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import CircleImage from '../../CircleImage';
 import CircleButton from '../../CircleButton';
 import {
@@ -64,10 +64,12 @@ export default function ChatItem({ name, newMess = false, data = {} }) {
       icon: <ExclamationMark width={24} height={24} />,
     },
   ];
+  const navigate = useNavigate();
+
   return (
     <div className={cx('div-box', 'pd_0_6')}>
       <NavLink
-        to={`/room/${data.roomId}`}
+        to={newMess || `/room/${data.roomId}`}
         className={(nav) => cx('wrapper', { active: nav.isActive })}
       >
         <div style={{ width: '100%' }} className={['pd_10']}>
@@ -93,9 +95,15 @@ export default function ChatItem({ name, newMess = false, data = {} }) {
             </div>
             <div className={cx('status-container')}>
               {newMess ? (
-                <Link to={'/'} className={cx('cancle')}>
+                <div
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate('/');
+                  }}
+                  className={cx('cancle')}
+                >
                   <FontAwesomeIcon className={cx('xmark-icon')} icon={faXmark} />
-                </Link>
+                </div>
               ) : (
                 <div className={cx('seen')}>
                   <img className={cx('avatar-seen')} alt="img" src={data.avatar || images.user} />

@@ -9,7 +9,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import PopperWrapper from '../Popper/PopperWrapper';
 import PopperItem from '../Popper/PopperItem';
 import { useState } from 'react';
-import { Block, MessageIcon, UserIcon } from '../Icons';
+import { MessageIcon, TrashCan, UserIcon } from '../Icons';
 
 const cx = classNames.bind(styles);
 const menuItems = [
@@ -22,25 +22,25 @@ const menuItems = [
     icon: <UserIcon width={24} height={24} />,
   },
   {
-    title: 'Chặn',
-    icon: <Block width={24} height={24} />,
+    title: 'Xóa khỏi nhóm',
+    icon: <TrashCan width={24} height={24} />,
   },
 ];
-function MemberItem() {
+function MemberItem({ data }) {
   const [moreMenu, setMoreMenu] = useState(false);
 
   return (
     <div className={cx('wrapper')}>
       <div className={cx('avatar-container')}>
-        <Tippy content="Nhắn tin cho Bin Bùi">
+        <Tippy content={`Nhắn tin cho ${data.userName}`}>
           <div>
-            <CircleImage className={cx('avatar')} />
+            <CircleImage src={data.avatar} className={cx('avatar')} />
           </div>
         </Tippy>
       </div>
       <div className={cx('infor-container')}>
         <div className={cx('user-name')}>
-          <span>Bin Bùi</span>
+          <span>{data.userName}</span>
         </div>
         <div className={cx('add-by')}>
           <span>Người tạo nhóm</span>
@@ -48,9 +48,10 @@ function MemberItem() {
       </div>
       <HeadlessTippy
         interactive
+        offset={[0, 10]}
         visible={moreMenu}
         render={() => (
-          <PopperWrapper arrow={false}>
+          <PopperWrapper className={cx('menu-wrapper')} arrow={false}>
             {menuItems.map((item, index) => (
               <PopperItem key={index} data={item} />
             ))}
@@ -60,7 +61,6 @@ function MemberItem() {
         <div>
           <CircleButton
             onOutsideClick={() => {
-              console.log('Đóng');
               setMoreMenu(false);
             }}
             onClick={(e) => {

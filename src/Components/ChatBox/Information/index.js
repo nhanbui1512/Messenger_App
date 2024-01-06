@@ -21,9 +21,86 @@ import MenuItem from '../../MenuItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBellSlash, faFile, faImages, faLink } from '@fortawesome/free-solid-svg-icons';
 import MemberItem from '../../MemberItem';
+import { useEffect, useState } from 'react';
+import { getUsersInRoom } from '../../../Services/user';
+import { getCookie } from '../../../Services/local/cookie';
 const cx = classNames.bind(styles);
 
-export default function Information() {
+export default function Information({ roomid }) {
+  const [users, setUsers] = useState([
+    {
+      avatar: 'http://localhost:3000/images/9970508.png',
+      createAtStr: '2023-11-27T04:23:12.000Z',
+      updateAtStr: null,
+      userId: 1,
+      userName: 'nhanbui1512',
+      email: 'nhanb19@gmail.com',
+      phoneNumber: '09139023424',
+      createAt: '2023-11-27T04:23:12.000Z',
+      updateAt: null,
+    },
+    {
+      avatar:
+        'http://localhost:3000/images/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png',
+      createAtStr: '2023-11-27T04:23:30.000Z',
+      updateAtStr: null,
+      userId: 2,
+      userName: 'Nhân Bùi',
+      email: 'buithiennhan0345@gmail.com',
+      phoneNumber: '09139023424',
+      createAt: '2023-11-27T04:23:30.000Z',
+      updateAt: null,
+    },
+    {
+      avatar: 'http://localhost:3000/images/female-avatar-girl-face-woman-user-7.svg',
+      createAtStr: '2023-11-27T04:23:47.000Z',
+      updateAtStr: null,
+      userId: 3,
+      userName: 'avannguyen12',
+      email: 'nguyenvana@gmail.com',
+      phoneNumber: '09139023424',
+      createAt: '2023-11-27T04:23:47.000Z',
+      updateAt: null,
+    },
+    {
+      avatar:
+        'http://localhost:3000/images/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png',
+      createAtStr: '2023-11-27T04:24:10.000Z',
+      updateAtStr: null,
+      userId: 4,
+      userName: 'theanh23',
+      email: 'phantheanh2312@gmail.com',
+      phoneNumber: '09139023424',
+      createAt: '2023-11-27T04:24:10.000Z',
+      updateAt: null,
+    },
+    {
+      avatar: 'http://localhost:3000/images/default_avatar.png',
+      createAtStr: '2023-12-21T09:47:10.000Z',
+      updateAtStr: null,
+      userId: 14,
+      userName: 'Đoàn Nguyễn',
+      email: 'doannguyenviet@gmail.com',
+      phoneNumber: '0933457444',
+      createAt: '2023-12-21T09:47:10.000Z',
+      updateAt: null,
+    },
+  ]);
+
+  useEffect(() => {
+    const token = getCookie('authToken') || '';
+
+    getUsersInRoom(token, roomid)
+      .then((res) => {
+        if (res.data) {
+          setUsers(res.data.users);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [roomid]);
+
   return (
     <div className={cx('wrapper')}>
       <div>
@@ -86,7 +163,9 @@ export default function Information() {
           </div>
           <div className="pd_0_8">
             <DropdownMenu title="Thành viên trong đoạn chat">
-              <MemberItem />
+              {users.map((user) => (
+                <MemberItem key={user.userId} data={user} />
+              ))}
             </DropdownMenu>
           </div>
           <div className="pd_0_8">

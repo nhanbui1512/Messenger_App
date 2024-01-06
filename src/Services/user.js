@@ -26,3 +26,16 @@ export const searchUser = async (token, searchValue) => {
     throw error;
   }
 };
+
+export const getUsersInRoom = async (token, roomid) => {
+  try {
+    const res = await request.get(`/user/get-users?room_id=${roomid}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
