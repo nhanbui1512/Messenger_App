@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { getCookie } from '../../Services/local/cookie';
 import { useNavigate } from 'react-router-dom';
 import { getMyProfile } from '../../Services/user';
+import NewMessage from '../NewMessage';
 
 const cx = classNames.bind(styles);
 
@@ -30,6 +31,7 @@ function DashboardPage() {
       <Sidebar />
       <Routes>
         <Route key={1} path="/room/:roomid" element={<ChatBox />} />
+        <Route key={2} path="/new" element={<NewMessage />}></Route>
       </Routes>
     </div>
   );
