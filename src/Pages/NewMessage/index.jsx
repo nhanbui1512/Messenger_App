@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
 import styles from './NewMessage.module.scss';
 import PopperWrapper from '../../Components/Popper/PopperWrapper';
-import SearchItem from './SearchItem';
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../hooks';
 import { searchUser } from '../../Services/user';
 import { getCookie } from '../../Services/local/cookie';
+import AccountItem from '../../Components/Sidebar/AccountItem';
 const cx = classNames.bind(styles);
 
 const token = getCookie('authToken') || '';
@@ -31,7 +31,7 @@ function NewMessage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [debounceValue, setSearchResult]);
+  }, [debounceValue]);
 
   return (
     <div className={cx('wrapper')}>
@@ -58,7 +58,7 @@ function NewMessage() {
           <PopperWrapper arrow={false} className={cx('search-wrapper')}>
             <div className={cx('scroller')}>
               {searchResult.map((user, index) => (
-                <SearchItem key={index} data={user} />
+                <AccountItem key={index} data={user} />
               ))}
             </div>
           </PopperWrapper>
