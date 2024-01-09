@@ -23,7 +23,7 @@ export default function ChatContent({ data, setMessages }) {
   useEffect(() => {
     const contentHeight = wrapperRef.current.scrollHeight;
     wrapperRef.current.scrollTop = contentHeight;
-  });
+  }, []);
 
   return (
     <div ref={wrapperRef} className={cx('wrapper')}>

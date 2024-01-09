@@ -4,6 +4,7 @@ import CircleImage from '../../CircleImage';
 import Actions from './Actions';
 import Reactions from './Reactions';
 import Tippy from '@tippyjs/react/headless';
+import ImageMessage from '../../ImageMessage';
 
 const cx = classNames.bind(styles);
 
@@ -14,26 +15,32 @@ export default function MessagesGroup({ myself = false, messages = [], setMessag
       var last = index === messages.length - 1 && messages.length !== 1;
       var only = messages.length === 1;
       return (
-        <div key={index} className={cx('mess-wrap')}>
-          <Tippy
-            hideOnClick
-            placement="right"
-            interactive
-            delay={[0, 300]}
-            appendTo={'parent'}
-            render={(atrs) => {
-              return <Actions message={item} setMessages={setMessages} />;
-            }}
-          >
-            <div className={cx('mess-container', { first, last, only })}>
-              <span className={cx('mess-content')}>{item.content}</span>
+        <>
+          {item.content && (
+            <div key={index} className={cx('mess-wrap')}>
+              <Tippy
+                hideOnClick
+                placement="right"
+                interactive
+                delay={[0, 300]}
+                appendTo={'parent'}
+                render={(atrs) => <Actions message={item} setMessages={setMessages} />}
+              >
+                <div className={cx('mess-container', { first, last, only })}>
+                  <span className={cx('mess-content')}>{item.content}</span>
+                </div>
+              </Tippy>
+              {/* // reactions of users */}
+              <div>
+                <Reactions reactions={item.reactions.data} count={item.reactions.countReact} />
+              </div>
             </div>
-          </Tippy>
-          {/* // reactions of users */}
-          <div>
-            <Reactions reactions={item.reactions.data} count={item.reactions.countReact} />
-          </div>
-        </div>
+          )}
+
+          {item.images.map((image, index) => (
+            <ImageMessage key={index} />
+          ))}
+        </>
       );
     });
   };
