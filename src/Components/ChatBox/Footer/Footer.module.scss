@@ -22,12 +22,13 @@
 }
 .input-container {
   position: relative;
-  width: 100%;
   display: flex;
+  flex-direction: column;
+  width: 100%;
   background-color: rgba(134, 142, 153, 0.1);
   height: 100%;
   border-radius: 20px;
-  align-items: flex-end;
+  align-items: flex-start;
   textarea {
     background-color: transparent;
 
@@ -68,6 +69,7 @@
   position: relative;
   width: 100%;
   justify-content: flex-start;
+  align-items: flex-end;
 }
 .menu-btn {
   transform: scale(1);
@@ -77,4 +79,56 @@
   position: absolute;
   transform: scale(0);
   transition: 0.4s ease;
+}
+
+.file-wrapper {
+  display: flex;
+  padding: 12px;
+}
+
+.add-files-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background-color: #e4e6eb;
+  margin-right: 12px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  .file-plus-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+.image-wrapper {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  position: relative;
+  border-radius: 12px;
+  .image {
+    border-radius: inherit;
+  }
+}
+.delete-btn {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #fff;
+  border: 1px solid #ced0d4;
+  color: #65676b;
+  right: -8px;
+  top: -8px;
+  &:hover {
+    background-color: rgb(240, 242, 245);
+  }
 }

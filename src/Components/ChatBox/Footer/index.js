@@ -13,6 +13,10 @@ import { createNewMessage } from '../../../Services/message';
 import { useParams } from 'react-router-dom';
 import { StoreContext } from '../../../store';
 import { getCookie } from '../../../Services/local/cookie';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileCirclePlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import Image from '../../Image';
+import images from '../../../assests/images';
 
 const cx = classNames.bind(styles);
 
@@ -121,18 +125,31 @@ export default function Footer({ setMessages }) {
         </Tippy>
         <div className={cx('chat-input')}>
           <div className={cx('input-container')}>
-            <textarea
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  handleSendMessage();
-                }
-              }}
-              placeholder="Aa"
-              value={valueChat}
-              onInput={handleInput}
-              rows="1"
-            />
+            <div className={cx('file-wrapper')}>
+              <button className={cx('add-files-btn')}>
+                <FontAwesomeIcon className={cx('file-plus-icon')} icon={faFileCirclePlus} />
+              </button>
+              <div className={cx('image-wrapper')}>
+                <Image src={images.user} className={cx('image')} />
+                <button className={cx('delete-btn')}>
+                  <FontAwesomeIcon icon={faXmark} />
+                </button>
+              </div>
+            </div>
+            <div style={{ width: '100%' }}>
+              <textarea
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    handleSendMessage();
+                  }
+                }}
+                placeholder="Aa"
+                value={valueChat}
+                onInput={handleInput}
+                rows="1"
+              />
+            </div>
 
             <div
               onClick={() => {

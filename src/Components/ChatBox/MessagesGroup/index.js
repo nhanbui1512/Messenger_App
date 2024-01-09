@@ -15,7 +15,7 @@ export default function MessagesGroup({ myself = false, messages = [], setMessag
       var last = index === messages.length - 1 && messages.length !== 1;
       var only = messages.length === 1;
       return (
-        <>
+        <div key={index} className={cx('mess-wrap')}>
           {item.content && (
             <div key={index} className={cx('mess-wrap')}>
               <Tippy
@@ -40,7 +40,7 @@ export default function MessagesGroup({ myself = false, messages = [], setMessag
           {item.images.map((image, index) => (
             <ImageMessage key={index} />
           ))}
-        </>
+        </div>
       );
     });
   };
