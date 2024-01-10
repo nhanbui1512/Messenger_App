@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import styles from './Footer.module.scss';
 import CircleButton from '../../CircleButton';
 import { Emoji, FileIcon, GifIcon, ImageIcon, LikeIcon, PlusIcon, Send } from '../../Icons';
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 
 import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale-subtle.css';
@@ -16,7 +16,6 @@ import { getCookie } from '../../../Services/local/cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileCirclePlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Image from '../../Image';
-import images from '../../../assests/images';
 
 const cx = classNames.bind(styles);
 
@@ -28,6 +27,10 @@ export default function Footer({ setMessages }) {
   const [scale, setScale] = useState(false);
   const [emoji, setEmoji] = useState(false);
   const { roomid } = useParams();
+
+  const inputFileRef = useRef();
+
+  const [imageFiles, setImageFiles] = useState([]);
 
   const handleInput = (e) => {
     setValueChat(e.target.value);
@@ -99,9 +102,26 @@ export default function Footer({ setMessages }) {
         <Tippy animation={'scale-subtle'} content={'Đính kèm file'}>
           <div>
             <CircleButton
+              onClick={() => {
+                inputFileRef.current.click();
+              }}
               className={cx('menu-btn', { scale: scale })}
               transparent
               icon={<ImageIcon />}
+            />
+            <input
+              max={5}
+              accept=".jpg, .jpeg, .png"
+              onInput={(e) => {
+                if (e.target.files.length > 0) {
+                  const file = e.target.files[0];
+                  file.preview = URL.createObjectURL(file);
+                  setImageFiles((prev) => [...prev, file]);
+                }
+              }}
+              ref={inputFileRef}
+              type="file"
+              className="disappear"
             />
           </div>
         </Tippy>
@@ -125,18 +145,38 @@ export default function Footer({ setMessages }) {
         </Tippy>
         <div className={cx('chat-input')}>
           <div className={cx('input-container')}>
-            <div className={cx('file-wrapper')}>
-              <button className={cx('add-files-btn')}>
-                <FontAwesomeIcon className={cx('file-plus-icon')} icon={faFileCirclePlus} />
-              </button>
-              <div className={cx('image-wrapper')}>
-                <Image src={images.user} className={cx('image')} />
-                <button className={cx('delete-btn')}>
-                  <FontAwesomeIcon icon={faXmark} />
+            {imageFiles.length > 0 && (
+              <div className={cx('file-wrapper')}>
+                <button
+                  onClick={() => {
+                    inputFileRef.current.click();
+                  }}
+                  className={cx('add-files-btn')}
+                >
+                  <FontAwesomeIcon className={cx('file-plus-icon')} icon={faFileCirclePlus} />
                 </button>
+                {imageFiles.map((file, index) => {
+                  return (
+                    <div key={index} className={cx('image-wrapper')}>
+                      <Image src={file.preview} className={cx('image')} />
+                      <button
+                        onClick={() => {
+                          setImageFiles((prev) => {
+                            const newState = prev.filter((item) => item.preview !== file.preview);
+                            URL.revokeObjectURL(file.preview);
+                            return newState;
+                          });
+                        }}
+                        className={cx('delete-btn')}
+                      >
+                        <FontAwesomeIcon icon={faXmark} />
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
-            </div>
-            <div style={{ width: '100%' }}>
+            )}
+            <div style={{ width: '100%', display: 'flex' }}>
               <textarea
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
