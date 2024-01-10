@@ -15,7 +15,6 @@ import { StoreContext } from '../../../store';
 import { getCookie } from '../../../Services/local/cookie';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileCirclePlus, faXmark } from '@fortawesome/free-solid-svg-icons';
-import Image from '../../Image';
 
 const cx = classNames.bind(styles);
 
@@ -23,13 +22,12 @@ export default function Footer({ setMessages }) {
   const context = useContext(StoreContext);
   const socket = context.socket;
 
+  const { roomid } = useParams();
+  const inputFileRef = useRef();
+
   const [valueChat, setValueChat] = useState('');
   const [scale, setScale] = useState(false);
   const [emoji, setEmoji] = useState(false);
-  const { roomid } = useParams();
-
-  const inputFileRef = useRef();
-
   const [imageFiles, setImageFiles] = useState([]);
 
   const handleInput = (e) => {
@@ -112,11 +110,12 @@ export default function Footer({ setMessages }) {
             <input
               max={5}
               accept=".jpg, .jpeg, .png"
-              onInput={(e) => {
-                if (e.target.files.length > 0) {
+              onChange={(e) => {
+                if (e.target.files.length > 0 && e.target.files[0].type.includes('image')) {
                   const file = e.target.files[0];
                   file.preview = URL.createObjectURL(file);
                   setImageFiles((prev) => [...prev, file]);
+                  e.target.value = null;
                 }
               }}
               ref={inputFileRef}
@@ -158,7 +157,12 @@ export default function Footer({ setMessages }) {
                 {imageFiles.map((file, index) => {
                   return (
                     <div key={index} className={cx('image-wrapper')}>
-                      <Image src={file.preview} className={cx('image')} />
+                      <div
+                        style={{
+                          backgroundImage: `url(${file.preview})`,
+                        }}
+                        className={cx('image')}
+                      ></div>
                       <button
                         onClick={() => {
                           setImageFiles((prev) => {
@@ -202,7 +206,7 @@ export default function Footer({ setMessages }) {
               </div>
             </div>
 
-            {emoji && (
+            {emoji && ( // open or close emoji picker popper
               <div className={cx('emoji-wrapper')}>
                 <EmojiPicker
                   previewConfig={{
