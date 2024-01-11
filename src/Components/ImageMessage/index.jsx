@@ -1,16 +1,13 @@
 import classNames from 'classnames/bind';
 import styles from './ImageMessage.module.scss';
+import images from '../../assests/images';
 const cx = classNames.bind(styles);
 
-function ImageMessage() {
+function ImageMessage({ data }) {
   return (
     <div className={cx('wrapper')}>
       <div className={cx('cover')}></div>
-      <img
-        className={cx('image')}
-        src="https://logowik.com/content/uploads/images/csv-file-format8052.jpg"
-        alt=""
-      ></img>
+      <img className={cx('image')} src={data.fileUrl || images.noImage} alt=""></img>
     </div>
   );
 }

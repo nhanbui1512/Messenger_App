@@ -1,21 +1,14 @@
 import axios from 'axios';
 import request from './request';
 
-export const createNewMessage = async ({ content, roomId, token }) => {
+export const createNewMessage = async ({ content, roomId, token, data }) => {
   try {
-    var response = await axios.post(
-      `http://localhost:3000/message/send-message`,
-      {
-        content: content,
-        roomId: roomId,
+    var response = await axios.post(`http://localhost:3000/message/send-message`, data, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
       },
-      {
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
+    });
     return response.data;
   } catch (error) {
     throw error;

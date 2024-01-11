@@ -3,14 +3,15 @@ import styles from './ChatBox.module.scss';
 import Header from './Header';
 import ChatContent from './ChatContent';
 import Footer from './Footer';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, createContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { StoreContext } from '../../store';
 import { getMessages } from '../../Services/message';
 import { getCookie } from '../../Services/local/cookie';
 import Information from './Information';
-
 const cx = classNames.bind(styles);
+
+export const ChatBoxContex = createContext();
 
 function ChatBox() {
   const context = useContext(StoreContext);
@@ -37,7 +38,7 @@ function ChatBox() {
           createTimeStr: '23:52 29/11/2023',
           last: '3 ngày',
           messageId: 54,
-          content: null,
+          content: 'Xin chao moi nguoi',
           createAt: '2023-11-29T16:52:03.000Z',
           deleteAt: null,
           userUserId: 1,
@@ -197,6 +198,7 @@ function ChatBox() {
       });
     });
   }, [roomid, socket, userId]);
+
   return (
     <div className={cx('wrapper')}>
       <div className={cx('content-wrapper')}>

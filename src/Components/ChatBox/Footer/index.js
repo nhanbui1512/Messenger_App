@@ -70,13 +70,22 @@ export default function Footer({ setMessages }) {
     // mount message into DOM
     const token = getCookie('authToken');
 
+    const formData = new FormData();
+    imageFiles.forEach((image) => {
+      formData.append('photos', image);
+    });
+
+    formData.append('roomId', roomid);
+    formData.append('content', valueChat);
+
     if (valueChat.trim() !== '') {
-      createNewMessage({ content: valueChat, roomId: roomid, token: token })
+      createNewMessage({ content: valueChat, roomId: roomid, token: token, data: formData })
         .then((res) => {
           return res.data;
         })
         .then((data) => {
           changeDOM(data);
+          setImageFiles([]);
           socket.emit('message', data);
         })
         .catch((err) => {

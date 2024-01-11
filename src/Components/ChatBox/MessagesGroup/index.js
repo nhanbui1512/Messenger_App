@@ -38,7 +38,7 @@ export default function MessagesGroup({ myself = false, messages = [], setMessag
           )}
 
           {item.images.map((image, index) => (
-            <ImageMessage key={index} />
+            <ImageMessage data={image} key={index} />
           ))}
         </div>
       );
