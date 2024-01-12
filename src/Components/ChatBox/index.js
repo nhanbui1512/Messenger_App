@@ -213,7 +213,7 @@ function ChatBox() {
           <Footer setMessages={setMessages} />
         </div>
       </div>
-      {more && <Information roomid={roomid} />}
+      {more && <Information data={room} roomid={roomid} />}
     </div>
   );
 }
